@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.SiteProductMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.SiteProduct" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="stock_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="kc_stock_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="index_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="futures_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="real_name_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="funds_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="delay_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="expand_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="margin_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="end_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="stock_margin_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="holiday_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stock_display, kc_stock_display, index_display, futures_display, real_name_display, funds_display,
+                funds_display,
+                delay_display,
+                expand_display,
+                margin_display,
+                end_display,
+                stock_margin_display,
+                holiday_display
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from site_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.SiteProduct" >
+    insert into site_product (id, stock_display, kc_stock_display, 
+      index_display, futures_display, real_name_display,
+                funds_display,
+                delay_display,
+                expand_display,
+                margin_display,
+                end_display)
+    values (#{id,jdbcType=INTEGER}, #{stockDisplay,jdbcType=BIT}, #{kcStockDisplay,jdbcType=BIT}, 
+      #{indexDisplay,jdbcType=BIT}, #{futuresDisplay,jdbcType=BIT}, #{realNameDisplay,jdbcType=BIT}
+      , #{fundsDisplay,jdbcType=BIT}, #{delayDisplay,jdbcType=BIT}, #{expandDisplay,jdbcType=BIT}
+      , #{marginDisplay,jdbcType=BIT}, #{endDisplay,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.SiteProduct" >
+    insert into site_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stockDisplay != null" >
+        stock_display,
+      </if>
+      <if test="kcStockDisplay != null" >
+        kc_stock_display,
+      </if>
+      <if test="indexDisplay != null" >
+        index_display,
+      </if>
+      <if test="futuresDisplay != null" >
+        futures_display,
+      </if>
+      <if test="realNameDisplay != null" >
+        real_name_display,
+      </if>
+      <if test ='null != fundsDisplay'>
+        funds_display,
+      </if>
+      <if test ='null != delayDisplay'>
+        delay_display,
+      </if>
+      <if test ='null != expandDisplay'>
+        expand_display,
+      </if>
+      <if test ='null != marginDisplay'>
+        margin_display,
+      </if>
+      <if test ='null != endDisplay'>
+        end_display
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stockDisplay != null" >
+        #{stockDisplay,jdbcType=BIT},
+      </if>
+      <if test="kcStockDisplay != null" >
+        #{kcStockDisplay,jdbcType=BIT},
+      </if>
+      <if test="indexDisplay != null" >
+        #{indexDisplay,jdbcType=BIT},
+      </if>
+      <if test="futuresDisplay != null" >
+        #{futuresDisplay,jdbcType=BIT},
+      </if>
+      <if test="realNameDisplay != null" >
+        #{realNameDisplay,jdbcType=BIT},
+      </if>
+      <if test ='null != fundsDisplay'>
+        #{fundsDisplay,jdbcType=BIT},
+      </if>
+      <if test ='null != delayDisplay'>
+        #{delayDisplay,jdbcType=BIT},
+      </if>
+      <if test ='null != expandDisplay'>
+        #{expandDisplay,jdbcType=BIT},
+      </if>
+      <if test ='null != marginDisplay'>
+        #{marginDisplay,jdbcType=BIT},
+      </if>
+      <if test ='null != endDisplay'>
+        #{endDisplay,jdbcType=BIT}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.SiteProduct" >
+    update site_product
+    <set >
+      <if test="stockDisplay != null" >
+        stock_display = #{stockDisplay,jdbcType=BIT},
+      </if>
+      <if test="kcStockDisplay != null" >
+        kc_stock_display = #{kcStockDisplay,jdbcType=BIT},
+      </if>
+      <if test="indexDisplay != null" >
+        index_display = #{indexDisplay,jdbcType=BIT},
+      </if>
+      <if test="futuresDisplay != null" >
+        futures_display = #{futuresDisplay,jdbcType=BIT},
+      </if>
+      <if test="realNameDisplay != null" >
+        real_name_display = #{realNameDisplay,jdbcType=BIT},
+      </if>
+      <if test="fundsDisplay != null" >
+        funds_display = #{fundsDisplay,jdbcType=BIT},
+      </if>
+      <if test ='null != delayDisplay'>delay_display = #{delayDisplay},</if>
+      <if test ='null != expandDisplay'>expand_display = #{expandDisplay},</if>
+      <if test ='null != marginDisplay'>margin_display = #{marginDisplay},</if>
+      <if test ='null != endDisplay'>end_display = #{endDisplay},</if>
+      <if test ='null != stockMarginDisplay'>stock_margin_display = #{stockMarginDisplay}</if>
+      <if test ='null != holidayDisplay'>holiday_display = #{holidayDisplay}</if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.SiteProduct" >
+    update site_product
+    set stock_display = #{stockDisplay,jdbcType=BIT},
+      kc_stock_display = #{kcStockDisplay,jdbcType=BIT},
+      index_display = #{indexDisplay,jdbcType=BIT},
+      futures_display = #{futuresDisplay,jdbcType=BIT},
+      real_name_display = #{realNameDisplay,jdbcType=BIT},
+      funds_display = #{fundsDisplay,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+
+  <select id="findAllSiteSetting" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_product
+  </select>
+  
+  
+</mapper>
+
+
+
+

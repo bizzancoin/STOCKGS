@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.StockOptionMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.StockOption" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="stock_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="stock_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_lock" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, stock_id, add_time, stock_code, stock_name, stock_gid, is_lock
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stock_option
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stock_option
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.StockOption" >
+    insert into stock_option (id, user_id, stock_id, 
+      add_time, stock_code, stock_name, 
+      stock_gid, is_lock)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{stockId,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{stockCode,jdbcType=VARCHAR}, #{stockName,jdbcType=VARCHAR}, 
+      #{stockGid,jdbcType=VARCHAR}, #{isLock,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.StockOption" >
+    insert into stock_option
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="stockId != null" >
+        stock_id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="stockCode != null" >
+        stock_code,
+      </if>
+      <if test="stockName != null" >
+        stock_name,
+      </if>
+      <if test="stockGid != null" >
+        stock_gid,
+      </if>
+      <if test="isLock != null" >
+        is_lock,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="stockId != null" >
+        #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockCode != null" >
+        #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null" >
+        #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockGid != null" >
+        #{stockGid,jdbcType=VARCHAR},
+      </if>
+      <if test="isLock != null" >
+        #{isLock,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.StockOption" >
+    update stock_option
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="stockId != null" >
+        stock_id = #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockCode != null" >
+        stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null" >
+        stock_name = #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockGid != null" >
+        stock_gid = #{stockGid,jdbcType=VARCHAR},
+      </if>
+      <if test="isLock != null" >
+        is_lock = #{isLock,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.StockOption" >
+    update stock_option
+    set user_id = #{userId,jdbcType=INTEGER},
+      stock_id = #{stockId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      stock_code = #{stockCode,jdbcType=VARCHAR},
+      stock_name = #{stockName,jdbcType=VARCHAR},
+      stock_gid = #{stockGid,jdbcType=VARCHAR},
+      is_lock = #{isLock,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="findMyOptionIsExistByCode" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_option
+    WHERE user_id = #{uid} and stock_code = #{stockCode}
+  </select>
+
+  <select id="findMyOptionByKeywords" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_option
+    <where>
+      user_id = #{uid}
+      <if test="keyWords != null and keyWords != '' ">
+        and stock_code like CONCAT('%','${keyWords}','%')
+      </if>
+    </where>
+    order by stock_code asc
+  </select>
+
+
+  <select id="isOption" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_option
+    WHERE user_id = #{uid} and stock_code = #{code}
+  </select>
+
+
+
+
+
+
+</mapper>

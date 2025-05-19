@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.StockFuturesMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.StockFutures" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="futures_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="futures_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="futures_gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="futures_unit" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="futures_standard" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="coin_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="home_show" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="list_show" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="deposit_amt" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="trans_fee" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="min_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="max_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="trans_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="trans_am_begin" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_am_end" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_pm_begin" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_pm_end" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="t_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_pm_begin2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_pm_end2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="each_point" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, futures_name, futures_code, futures_gid, futures_unit, futures_standard, coin_code,
+    home_show, list_show, deposit_amt, trans_fee, min_num, max_num, trans_state, trans_am_begin,
+    trans_am_end, trans_pm_begin, trans_pm_end, add_time, t_desc, trans_pm_begin2, trans_pm_end2, each_point
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from stock_futures
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stock_futures
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.StockFutures" >
+    insert into stock_futures (id, futures_name, futures_code,
+      futures_gid, futures_unit, futures_standard,
+      coin_code, home_show, list_show,
+      deposit_amt, trans_fee, min_num,
+      max_num, trans_state, trans_am_begin,
+      trans_am_end, trans_pm_begin, trans_pm_end,
+      add_time, t_desc, trans_pm_begin2, trans_pm_end2, each_point)
+    values (#{id,jdbcType=INTEGER}, #{futuresName,jdbcType=VARCHAR}, #{futuresCode,jdbcType=VARCHAR},
+      #{futuresGid,jdbcType=VARCHAR}, #{futuresUnit,jdbcType=VARCHAR}, #{futuresStandard,jdbcType=INTEGER},
+      #{coinCode,jdbcType=VARCHAR}, #{homeShow,jdbcType=INTEGER}, #{listShow,jdbcType=INTEGER},
+      #{depositAmt,jdbcType=INTEGER}, #{transFee,jdbcType=INTEGER}, #{minNum,jdbcType=INTEGER},
+      #{maxNum,jdbcType=INTEGER}, #{transState,jdbcType=INTEGER}, #{transAmBegin,jdbcType=VARCHAR},
+      #{transAmEnd,jdbcType=VARCHAR}, #{transPmBegin,jdbcType=VARCHAR}, #{transPmEnd,jdbcType=VARCHAR},
+      #{addTime,jdbcType=TIMESTAMP}, #{tDesc,jdbcType=VARCHAR}, #{transPmBegin2,jdbcType=VARCHAR}, #{transPmEnd2,jdbcType=VARCHAR},
+      #{eachPoint,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.StockFutures" >
+    insert into stock_futures
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="futuresName != null" >
+        futures_name,
+      </if>
+      <if test="futuresCode != null" >
+        futures_code,
+      </if>
+      <if test="futuresGid != null" >
+        futures_gid,
+      </if>
+      <if test="futuresUnit != null" >
+        futures_unit,
+      </if>
+      <if test="futuresStandard != null" >
+        futures_standard,
+      </if>
+      <if test="coinCode != null" >
+        coin_code,
+      </if>
+      <if test="homeShow != null" >
+        home_show,
+      </if>
+      <if test="listShow != null" >
+        list_show,
+      </if>
+      <if test="depositAmt != null" >
+        deposit_amt,
+      </if>
+      <if test="transFee != null" >
+        trans_fee,
+      </if>
+      <if test="minNum != null" >
+        min_num,
+      </if>
+      <if test="maxNum != null" >
+        max_num,
+      </if>
+      <if test="transState != null" >
+        trans_state,
+      </if>
+      <if test="transAmBegin != null" >
+        trans_am_begin,
+      </if>
+      <if test="transAmEnd != null" >
+        trans_am_end,
+      </if>
+      <if test="transPmBegin != null" >
+        trans_pm_begin,
+      </if>
+      <if test="transPmEnd != null" >
+        trans_pm_end,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="tDesc != null" >
+        t_desc,
+      </if>
+      <if test="transPmBegin2 != null" >
+        trans_pm_begin2,
+      </if>
+      <if test="transPmEnd2 != null" >
+        trans_pm_end2,
+      </if>
+      <if test="eachPoint != null" >
+        each_point,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="futuresName != null" >
+        #{futuresName,jdbcType=VARCHAR},
+      </if>
+      <if test="futuresCode != null" >
+        #{futuresCode,jdbcType=VARCHAR},
+      </if>
+      <if test="futuresGid != null" >
+        #{futuresGid,jdbcType=VARCHAR},
+      </if>
+      <if test="futuresUnit != null" >
+        #{futuresUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="futuresStandard != null" >
+        #{futuresStandard,jdbcType=INTEGER},
+      </if>
+      <if test="coinCode != null" >
+        #{coinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="homeShow != null" >
+        #{homeShow,jdbcType=INTEGER},
+      </if>
+      <if test="listShow != null" >
+        #{listShow,jdbcType=INTEGER},
+      </if>
+      <if test="depositAmt != null" >
+        #{depositAmt,jdbcType=INTEGER},
+      </if>
+      <if test="transFee != null" >
+        #{transFee,jdbcType=INTEGER},
+      </if>
+      <if test="minNum != null" >
+        #{minNum,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null" >
+        #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="transState != null" >
+        #{transState,jdbcType=INTEGER},
+      </if>
+      <if test="transAmBegin != null" >
+        #{transAmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmEnd != null" >
+        #{transAmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmBegin != null" >
+        #{transPmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmEnd != null" >
+        #{transPmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDesc != null" >
+        #{tDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmBegin2 != null" >
+        #{transPmBegin2,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmEnd2 != null" >
+        #{transPmEnd2,jdbcType=VARCHAR},
+      </if>
+      <if test="eachPoint != null" >
+        #{eachPoint,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.StockFutures" >
+    update stock_futures
+    <set >
+      <if test="futuresName != null" >
+        futures_name = #{futuresName,jdbcType=VARCHAR},
+      </if>
+      <if test="futuresCode != null" >
+        futures_code = #{futuresCode,jdbcType=VARCHAR},
+      </if>
+      <if test="futuresGid != null" >
+        futures_gid = #{futuresGid,jdbcType=VARCHAR},
+      </if>
+      <if test="futuresUnit != null" >
+        futures_unit = #{futuresUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="futuresStandard != null" >
+        futures_standard = #{futuresStandard,jdbcType=INTEGER},
+      </if>
+      <if test="coinCode != null" >
+        coin_code = #{coinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="homeShow != null" >
+        home_show = #{homeShow,jdbcType=INTEGER},
+      </if>
+      <if test="listShow != null" >
+        list_show = #{listShow,jdbcType=INTEGER},
+      </if>
+      <if test="depositAmt != null" >
+        deposit_amt = #{depositAmt,jdbcType=INTEGER},
+      </if>
+      <if test="transFee != null" >
+        trans_fee = #{transFee,jdbcType=INTEGER},
+      </if>
+      <if test="minNum != null" >
+        min_num = #{minNum,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null" >
+        max_num = #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="transState != null" >
+        trans_state = #{transState,jdbcType=INTEGER},
+      </if>
+      <if test="transAmBegin != null" >
+        trans_am_begin = #{transAmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmEnd != null" >
+        trans_am_end = #{transAmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmBegin != null" >
+        trans_pm_begin = #{transPmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmEnd != null" >
+        trans_pm_end = #{transPmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDesc != null" >
+        t_desc = #{tDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmBegin2 != null" >
+        trans_pm_begin2 = #{transPmBegin2,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmEnd2 != null" >
+        trans_pm_end2 = #{transPmEnd2,jdbcType=VARCHAR},
+      </if>
+      <if test="eachPoint != null" >
+        each_point = #{eachPoint,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.StockFutures" >
+    update stock_futures
+    set futures_name = #{futuresName,jdbcType=VARCHAR},
+      futures_code = #{futuresCode,jdbcType=VARCHAR},
+      futures_gid = #{futuresGid,jdbcType=VARCHAR},
+      futures_unit = #{futuresUnit,jdbcType=VARCHAR},
+      futures_standard = #{futuresStandard,jdbcType=INTEGER},
+      coin_code = #{coinCode,jdbcType=VARCHAR},
+      home_show = #{homeShow,jdbcType=INTEGER},
+      list_show = #{listShow,jdbcType=INTEGER},
+      deposit_amt = #{depositAmt,jdbcType=INTEGER},
+      trans_fee = #{transFee,jdbcType=INTEGER},
+      min_num = #{minNum,jdbcType=INTEGER},
+      max_num = #{maxNum,jdbcType=INTEGER},
+      trans_state = #{transState,jdbcType=INTEGER},
+      trans_am_begin = #{transAmBegin,jdbcType=VARCHAR},
+      trans_am_end = #{transAmEnd,jdbcType=VARCHAR},
+      trans_pm_begin = #{transPmBegin,jdbcType=VARCHAR},
+      trans_pm_end = #{transPmEnd,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      t_desc = #{tDesc,jdbcType=VARCHAR},
+      trans_pm_begin2 = #{transPmBegin2,jdbcType=VARCHAR},
+      trans_pm_end2 = #{transPmEnd2,jdbcType=VARCHAR},
+      each_point = #{eachPoint,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+  <select id="listByAdmin" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_futures
+    <where>
+      <if test="fuName != null and fuName != '' ">
+        and futures_name like CONCAT('%','${fuName}','%')
+      </if>
+      <if test="fuCode != null and fuCode != '' ">
+        and futures_code like CONCAT('%','${fuCode}','%')
+      </if>
+    </where>
+  </select>
+
+  <select id="selectFuturesByName" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_futures
+    WHERE futures_name = #{fuName}
+  </select>
+
+  <select id="selectFuturesByCode" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_futures
+    WHERE futures_code = #{fuCode}
+  </select>
+
+
+
+  <select id="queryHome" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_futures
+    WHERE home_show = 1
+  </select>
+
+  <select id="queryList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_futures
+    WHERE list_show = 1
+  </select>
+
+
+
+
+
+</mapper>
+
+
+
+
+

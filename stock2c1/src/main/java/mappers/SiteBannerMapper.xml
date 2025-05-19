@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.SiteBannerMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.SiteBanner" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="banner_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_order" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_pc" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_m" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+
+      <arg column="ban_title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ban_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="target_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, banner_url, is_order, is_pc, is_m, add_time, ban_title, ban_desc, target_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from site_banner
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site_banner
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.SiteBanner" >
+    insert into site_banner (id, banner_url, is_order, 
+      is_pc, is_m, add_time,ban_title,ban_desc,target_url
+      )
+    values (#{id,jdbcType=INTEGER}, #{bannerUrl,jdbcType=VARCHAR}, #{isOrder,jdbcType=INTEGER}, 
+      #{isPc,jdbcType=INTEGER}, #{isM,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP},
+      #{banTitle,jdbcType=VARCHAR},#{banDesc,jdbcType=VARCHAR},#{targetUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.SiteBanner" >
+    insert into site_banner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bannerUrl != null" >
+        banner_url,
+      </if>
+      <if test="isOrder != null" >
+        is_order,
+      </if>
+      <if test="isPc != null" >
+        is_pc,
+      </if>
+      <if test="isM != null" >
+        is_m,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="banTitle != null" >
+        ban_title,
+      </if>
+      <if test="banDesc != null" >
+        ban_desc,
+      </if>
+      <if test="targetUrl != null" >
+        target_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bannerUrl != null" >
+        #{bannerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isOrder != null" >
+        #{isOrder,jdbcType=INTEGER},
+      </if>
+      <if test="isPc != null" >
+        #{isPc,jdbcType=INTEGER},
+      </if>
+      <if test="isM != null" >
+        #{isM,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="banTitle != null" >
+        #{banTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="banDesc != null" >
+        #{banDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null" >
+        #{targetUrl,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.SiteBanner" >
+    update site_banner
+    <set >
+      <if test="bannerUrl != null" >
+        banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isOrder != null" >
+        is_order = #{isOrder,jdbcType=INTEGER},
+      </if>
+      <if test="isPc != null" >
+        is_pc = #{isPc,jdbcType=INTEGER},
+      </if>
+      <if test="isM != null" >
+        is_m = #{isM,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="banTitle != null" >
+        ban_title = #{banTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="banDesc != null" >
+        ban_desc = #{banDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUrl != null" >
+        target_url = #{targetUrl,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.SiteBanner" >
+    update site_banner
+    set banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      is_order = #{isOrder,jdbcType=INTEGER},
+      is_pc = #{isPc,jdbcType=INTEGER},
+      is_m = #{isM,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      ban_title = #{banTitle,jdbcType=VARCHAR},
+      ban_desc = #{banDesc,jdbcType=VARCHAR},
+      target_url = #{targetUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+
+  <select id="listByAdmin" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_banner
+    ORDER BY is_order DESC
+  </select>
+
+
+
+  <select id="getBannerByMobile" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_banner
+    WHERE is_m = 0
+    ORDER  BY is_order DESC
+  </select>
+
+  <select id="getBannerByPC" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_banner
+    WHERE is_pc = 0
+    ORDER  BY is_order DESC
+  </select>
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.AgentUserMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.AgentUser" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="agent_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_pwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="is_lock" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="parent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="parent_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_level" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="poundage_scale" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="deferred_fees_scale" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="receive_dividends_scale" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="total_money" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="site_lever" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, agent_name, agent_pwd, agent_real_name, agent_phone, agent_code, add_time, is_lock, 
+    parent_id, parent_name, agent_level,poundage_scale,deferred_fees_scale,receive_dividends_scale,total_money,site_lever
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agent_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.AgentUser" >
+    insert into agent_user (agent_name, agent_pwd,
+      agent_real_name, agent_phone, agent_code, 
+      add_time, is_lock, parent_id, 
+      parent_name, agent_level,poundage_scale,deferred_fees_scale,receive_dividends_scale,total_money,site_lever)
+    values (#{agentName,jdbcType=VARCHAR}, #{agentPwd,jdbcType=VARCHAR},
+      #{agentRealName,jdbcType=VARCHAR}, #{agentPhone,jdbcType=VARCHAR}, #{agentCode,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{isLock,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, 
+      #{parentName,jdbcType=VARCHAR}, #{agentLevel,jdbcType=INTEGER}
+      , #{poundageScale,jdbcType=DECIMAL}, #{deferredFeesScale,jdbcType=DECIMAL}, #{receiveDividendsScale,jdbcType=DECIMAL}
+      , #{totalMoney,jdbcType=DECIMAL},#{siteLever,jdbcType=VARCHAR}
+      )
+
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.AgentUser" >
+    insert into agent_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="agentName != null" >
+        agent_name,
+      </if>
+      <if test="agentPwd != null" >
+        agent_pwd,
+      </if>
+      <if test="agentRealName != null" >
+        agent_real_name,
+      </if>
+      <if test="agentPhone != null" >
+        agent_phone,
+      </if>
+      <if test="agentCode != null" >
+        agent_code,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="isLock != null" >
+        is_lock,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="parentName != null" >
+        parent_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentName != null" >
+        #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPwd != null" >
+        #{agentPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="agentRealName != null" >
+        #{agentRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPhone != null" >
+        #{agentPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCode != null" >
+        #{agentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLock != null" >
+        #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentName != null" >
+        #{parentName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.AgentUser" >
+    update agent_user
+    <set >
+      <if test="agentName != null" >
+        agent_name = #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPwd != null" >
+        agent_pwd = #{agentPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="agentRealName != null" >
+        agent_real_name = #{agentRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPhone != null" >
+        agent_phone = #{agentPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCode != null" >
+        agent_code = #{agentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLock != null" >
+        is_lock = #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentName != null" >
+        parent_name = #{parentName,jdbcType=VARCHAR},
+      </if>
+      <!--<if test="agentLevel != null" >
+        agent_level = #{agentLevel,jdbcType=INTEGER},
+      </if>-->
+      <if test="poundageScale != null" >
+        poundage_scale = #{poundageScale,jdbcType=DECIMAL},
+      </if>
+      <if test="deferredFeesScale != null" >
+        deferred_fees_scale = #{deferredFeesScale,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveDividendsScale != null" >
+        receive_dividends_scale = #{receiveDividendsScale,jdbcType=DECIMAL},
+      </if>
+      <if test="siteLever != null" >
+        site_lever = #{siteLever,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.AgentUser" >
+    update agent_user
+    set agent_name = #{agentName,jdbcType=VARCHAR},
+      agent_pwd = #{agentPwd,jdbcType=VARCHAR},
+      agent_real_name = #{agentRealName,jdbcType=VARCHAR},
+      agent_phone = #{agentPhone,jdbcType=VARCHAR},
+      agent_code = #{agentCode,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      is_lock = #{isLock,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      parent_name = #{parentName,jdbcType=VARCHAR},
+      site_lever = #{siteLever,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findByCode" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM agent_user
+    WHERE agent_code = #{agentCode}
+  </select>
+
+  <select id="findByPhone" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM agent_user
+    WHERE agent_phone = #{agentPhone}
+  </select>
+
+  <select id="findByName" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM agent_user
+    WHERE agent_name = #{agentName}
+  </select>
+
+
+  <select id="login" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM agent_user
+    WHERE agent_phone = #{agentPhone} and agent_pwd = #{agentPwd}
+  </select>
+
+  <select id="getSecondAgent" parameterType="integer" resultMap="BaseResultMap">
+    SELECT
+    a.*
+    FROM agent_user a
+    left join agent_distribution_user d on a.id = d.agent_id
+    WHERE d.parent_id = #{uid}
+  </select>
+
+  <select id="listByAdmin" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM agent_user
+    <where>
+      <if test="realName != null and realName != '' ">
+        and agent_real_name like CONCAT('%','${realName}','%')
+      </if>
+      <if test="phone != null and phone != '' ">
+        and agent_phone like CONCAT('%','${phone}','%')
+      </if>
+      <if test="id != null and id != 0 ">
+        and parent_id = ${id}
+      </if>
+    </where>
+  </select>
+
+  <select id="CountAgentNum" resultType="int">
+    SELECT COUNT(id) FROM agent_user
+  </select>
+
+  <!--查询代理所有上级-->
+  <select id="getAgentSuperiorList" parameterType="integer" resultMap="BaseResultMap">
+    select a.* FROM agent_user a
+    left join agent_distribution_user d on d.parent_id = a.id
+    WHERE d.agent_id = #{agentId}
+    order by a.agent_level asc
+  </select>
+
+  <!--根据代理id查询代理信息-->
+  <select id="findAgentByAgentId" resultMap="BaseResultMap" parameterType="int">
+    select
+    <include refid="Base_Column_List"/>
+    from agent_user
+    where id = #{agentId}
+  </select>
+
+  <!--修改代理总资金-->
+  <update id="updateTotalMoney" parameterType="com.xc.pojo.AgentUser" >
+    update agent_user set total_money = ifnull(total_money,0)+#{totalMoney} where id = #{id}
+  </update>
+
+</mapper>

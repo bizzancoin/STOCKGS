@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.UserWithdrawMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.UserWithdraw" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="nick_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="with_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="apply_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="trans_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="with_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bank_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bank_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bank_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="with_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="with_fee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="with_msg" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, nick_name, agent_id, with_amt, apply_time, trans_time, with_name, bank_no, 
+    bank_name, bank_address, with_status, with_fee, with_msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_withdraw
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_withdraw
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.UserWithdraw" >
+    insert into user_withdraw (id, user_id, nick_name, 
+      agent_id, with_amt, apply_time, 
+      trans_time, with_name, bank_no, 
+      bank_name, bank_address, with_status, 
+      with_fee, with_msg)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, 
+      #{agentId,jdbcType=INTEGER}, #{withAmt,jdbcType=DECIMAL}, #{applyTime,jdbcType=TIMESTAMP}, 
+      #{transTime,jdbcType=TIMESTAMP}, #{withName,jdbcType=VARCHAR}, #{bankNo,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankAddress,jdbcType=VARCHAR}, #{withStatus,jdbcType=INTEGER}, 
+      #{withFee,jdbcType=DECIMAL}, #{withMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.UserWithdraw" >
+    insert into user_withdraw
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="withAmt != null" >
+        with_amt,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="transTime != null" >
+        trans_time,
+      </if>
+      <if test="withName != null" >
+        with_name,
+      </if>
+      <if test="bankNo != null" >
+        bank_no,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankAddress != null" >
+        bank_address,
+      </if>
+      <if test="withStatus != null" >
+        with_status,
+      </if>
+      <if test="withFee != null" >
+        with_fee,
+      </if>
+      <if test="withMsg != null" >
+        with_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="withAmt != null" >
+        #{withAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transTime != null" >
+        #{transTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="withName != null" >
+        #{withName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null" >
+        #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="withStatus != null" >
+        #{withStatus,jdbcType=INTEGER},
+      </if>
+      <if test="withFee != null" >
+        #{withFee,jdbcType=DECIMAL},
+      </if>
+      <if test="withMsg != null" >
+        #{withMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.UserWithdraw" >
+    update user_withdraw
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="withAmt != null" >
+        with_amt = #{withAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transTime != null" >
+        trans_time = #{transTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="withName != null" >
+        with_name = #{withName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null" >
+        bank_no = #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="withStatus != null" >
+        with_status = #{withStatus,jdbcType=INTEGER},
+      </if>
+      <if test="withFee != null" >
+        with_fee = #{withFee,jdbcType=DECIMAL},
+      </if>
+      <if test="withMsg != null" >
+        with_msg = #{withMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.UserWithdraw" >
+    update user_withdraw
+    set user_id = #{userId,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      agent_id = #{agentId,jdbcType=INTEGER},
+      with_amt = #{withAmt,jdbcType=DECIMAL},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      trans_time = #{transTime,jdbcType=TIMESTAMP},
+      with_name = #{withName,jdbcType=VARCHAR},
+      bank_no = #{bankNo,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      with_status = #{withStatus,jdbcType=INTEGER},
+      with_fee = #{withFee,jdbcType=DECIMAL},
+      with_msg = #{withMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="findUserWithList" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_withdraw
+    <where>
+      user_id = #{uid}
+      <if test="withStatus != null and withStatus != '' ">
+        and with_status = #{withStatus}
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+
+
+
+  <select id="listByAgent" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_withdraw
+    <where>
+      agent_id = #{searchId}
+      <if test="realName != null and realName != '' ">
+        and nick_name like CONCAT('%','${realName}','%')
+      </if>
+      <if test="state != null">
+        and with_status = #{state}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+  <select id="listByAdmin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_withdraw
+    <where>
+      <if test="agentId != null">
+        and agent_id = #{agentId}
+      </if>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="realName != null and realName != '' ">
+        and nick_name like CONCAT('%','${realName}','%')
+      </if>
+      <if test="state != null">
+        and with_status = #{state}
+      </if>
+      <if test="beginTime != null and beginTime != '' ">
+        and trans_time <![CDATA[>=]]> #{beginTime}
+      </if>
+      <if test="endTime != null and endTime != '' ">
+        and trans_time <![CDATA[<=]]> #{endTime}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+
+  <!--累计提现金额-->
+  <select id="CountSpWithSumAmtByState" parameterType="integer" resultType="decimal">
+    SELECT sum(with_amt) FROM user_withdraw WHERE with_status = #{withState}
+  </select>
+
+  <!--今日提现金额-->
+  <select id="CountSpWithSumAmTodaytByState" parameterType="integer" resultType="decimal">
+    SELECT sum(with_amt) FROM user_withdraw WHERE with_status = #{withState}  and TO_DAYS(trans_time) = TO_DAYS(NOW())
+  </select>
+
+
+  <delete id="deleteByUserId" parameterType="integer">
+    DELETE FROM user_withdraw WHERE user_id = #{userId}
+  </delete>
+
+
+</mapper>

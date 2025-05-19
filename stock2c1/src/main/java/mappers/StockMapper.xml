@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.StockMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.Stock" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="stock_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_spell" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_plate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_lock" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_show" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="spread_rate" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stock_name, stock_code, stock_spell, stock_type, stock_gid, stock_plate, is_lock,
+    is_show, add_time,spread_rate
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from stock
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stock
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.Stock" >
+    insert into stock (id, stock_name, stock_code,
+      stock_spell, stock_type, stock_gid,
+      stock_plate, is_lock, is_show,
+      add_time)
+    values (#{id,jdbcType=INTEGER}, #{stockName,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR},
+      #{stockSpell,jdbcType=VARCHAR}, #{stockType,jdbcType=VARCHAR}, #{stockGid,jdbcType=VARCHAR},
+      #{stockPlate,jdbcType=VARCHAR}, #{isLock,jdbcType=INTEGER}, #{isShow,jdbcType=INTEGER},
+      #{addTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.Stock" >
+    insert into stock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stockName != null" >
+        stock_name,
+      </if>
+      <if test="stockCode != null" >
+        stock_code,
+      </if>
+      <if test="stockSpell != null" >
+        stock_spell,
+      </if>
+      <if test="stockType != null" >
+        stock_type,
+      </if>
+      <if test="stockGid != null" >
+        stock_gid,
+      </if>
+      <if test="stockPlate != null" >
+        stock_plate,
+      </if>
+      <if test="isLock != null" >
+        is_lock,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stockName != null" >
+        #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null" >
+        #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockSpell != null" >
+        #{stockSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="stockType != null" >
+        #{stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="stockGid != null" >
+        #{stockGid,jdbcType=VARCHAR},
+      </if>
+      <if test="stockPlate != null" >
+        #{stockPlate,jdbcType=VARCHAR},
+      </if>
+      <if test="isLock != null" >
+        #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.Stock" >
+    update stock
+    <set >
+      <if test="stockName != null" >
+        stock_name = #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null" >
+        stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockSpell != null" >
+        stock_spell = #{stockSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="stockType != null" >
+        stock_type = #{stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="stockGid != null" >
+        stock_gid = #{stockGid,jdbcType=VARCHAR},
+      </if>
+      <if test="stockPlate != null" >
+        stock_plate = #{stockPlate,jdbcType=VARCHAR},
+      </if>
+      <if test="isLock != null" >
+        is_lock = #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spreadRate != null" >
+        spread_rate = #{spreadRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.Stock" >
+    update stock
+    set stock_name = #{stockName,jdbcType=VARCHAR},
+      stock_code = #{stockCode,jdbcType=VARCHAR},
+      stock_spell = #{stockSpell,jdbcType=VARCHAR},
+      stock_type = #{stockType,jdbcType=VARCHAR},
+      stock_gid = #{stockGid,jdbcType=VARCHAR},
+      stock_plate = #{stockPlate,jdbcType=VARCHAR},
+      is_lock = #{isLock,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="findStockListByKeyWords" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from stock
+    <where>
+      is_show = #{show}
+      <if test="keyWords != null and keyWords != '' ">
+        and (stock_code like CONCAT('%','${keyWords}','%')
+        or stock_spell like CONCAT('%','${keyWords}','%'))
+      </if>
+      <if test="stockPlate != null and stockPlate != '' ">
+        and stock_plate = #{stockPlate}
+      </if>
+      <if test="stockPlate == null or stockPlate == '' ">
+        and (stock_plate is null or stock_plate='' or stock_plate='科创' or stock_plate='创业' )
+      </if>
+      <if test="stockType != null and stockType != '' ">
+        and stock_type = #{stockType}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+  <select id="findStockCode" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from stock
+    <where>
+      <if test="stockType != null and stockType != '' ">
+        and stock_type = #{stockType}
+      </if>
+        GROUP BY stock_gid DESC
+        limit #{stock_num},#{stock_nums}
+    </where>
+  </select>
+
+  <select id="findStockByCode" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List" />
+    from stock
+    WHERE stock_code = #{code}
+  </select>
+  <select id="findStockByName" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List" />
+    from stock
+    WHERE stock_name = #{name}
+  </select>
+
+
+  <select id="listByAdmin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from stock
+    <where>
+      <if test="showState != null  ">
+        and is_show = #{showState}
+      </if>
+      <if test="lockState != null ">
+        and is_lock = #{lockState}
+      </if>
+      <if test="code != null and code != '' ">
+        and stock_code like CONCAT('%','${code}','%')
+      </if>
+      <if test="name != null and name != '' ">
+        and stock_name like CONCAT('%','${name}','%')
+      </if>
+      <if test="stockPlate != null and stockPlate != '' ">
+        and stock_plate = #{stockPlate}
+      </if>
+      <if test="stockType != null and stockType != '' ">
+        and stock_type = #{stockType}
+      </if>
+    </where>
+  </select>
+
+
+  <select id="CountStockNum" resultType="integer">
+    SELECT COUNT(id) FROM stock
+  </select>
+  <select id="CountShowNum" resultType="integer" parameterType="integer">
+    SELECT COUNT(id) FROM stock WHERE is_show = #{showState}
+  </select>
+  <select id="CountUnLockNum" resultType="integer" parameterType="integer">
+    SELECT COUNT(id) FROM stock WHERE is_lock = #{showState}
+  </select>
+
+
+  <select id="findStockList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock
+  </select>
+
+</mapper>

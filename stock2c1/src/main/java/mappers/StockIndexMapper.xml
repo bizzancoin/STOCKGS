@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.StockIndexMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.StockIndex" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="index_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="index_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="index_gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="home_show" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="list_show" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="trans_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+
+      <arg column="deposit_amt" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="trans_fee" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="each_point" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="min_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="max_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="t_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, index_name, index_code, index_gid, home_show, list_show, trans_state,
+    deposit_amt, trans_fee, each_point, min_num, max_num, add_time,t_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stock_index
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stock_index
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.StockIndex" >
+    insert into stock_index (id, index_name, index_code, 
+      index_gid, home_show, list_show, 
+      trans_state, deposit_amt, trans_fee, each_point, min_num, max_num,
+      add_time, t_desc
+      )
+    values (#{id,jdbcType=INTEGER}, #{indexName,jdbcType=VARCHAR}, #{indexCode,jdbcType=VARCHAR}, 
+      #{indexGid,jdbcType=VARCHAR}, #{homeShow,jdbcType=INTEGER}, #{listShow,jdbcType=INTEGER}, 
+      #{transState,jdbcType=INTEGER},
+      #{depositAmt,jdbcType=INTEGER},#{transFee,jdbcType=INTEGER},#{eachPoint,jdbcType=INTEGER},
+      #{minNum,jdbcType=INTEGER},#{maxNum,jdbcType=INTEGER},
+      #{addTime,jdbcType=TIMESTAMP}, #{tDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.StockIndex" >
+    insert into stock_index
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="indexName != null" >
+        index_name,
+      </if>
+      <if test="indexCode != null" >
+        index_code,
+      </if>
+      <if test="indexGid != null" >
+        index_gid,
+      </if>
+      <if test="homeShow != null" >
+        home_show,
+      </if>
+      <if test="listShow != null" >
+        list_show,
+      </if>
+      <if test="transState != null" >
+        trans_state,
+      </if>
+      <if test="depositAmt != null" >
+        deposit_amt,
+      </if>
+      <if test="transFee != null" >
+        trans_fee,
+      </if>
+      <if test="eachPoint != null" >
+        each_point,
+      </if>
+      <if test="minNum != null" >
+        min_num,
+      </if>
+      <if test="maxNum != null" >
+        max_num,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="tDesc != null" >
+        t_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCode != null" >
+        #{indexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexGid != null" >
+        #{indexGid,jdbcType=VARCHAR},
+      </if>
+      <if test="homeShow != null" >
+        #{homeShow,jdbcType=INTEGER},
+      </if>
+      <if test="listShow != null" >
+        #{listShow,jdbcType=INTEGER},
+      </if>
+      <if test="transState != null" >
+        #{transState,jdbcType=INTEGER},
+      </if>
+
+      <if test="depositAmt != null" >
+        #{depositAmt,jdbcType=INTEGER},
+      </if>
+      <if test="transFee != null" >
+        #{transFee,jdbcType=INTEGER},
+      </if>
+      <if test="eachPoint != null" >
+        #{eachPoint,jdbcType=INTEGER},
+      </if>
+      <if test="minNum != null" >
+        #{minNum,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null" >
+        #{maxNum,jdbcType=INTEGER},
+      </if>
+
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDesc != null" >
+        #{tDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.StockIndex" >
+    update stock_index
+    <set >
+      <if test="indexName != null" >
+        index_name = #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCode != null" >
+        index_code = #{indexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexGid != null" >
+        index_gid = #{indexGid,jdbcType=VARCHAR},
+      </if>
+      <if test="homeShow != null" >
+        home_show = #{homeShow,jdbcType=INTEGER},
+      </if>
+      <if test="listShow != null" >
+        list_show = #{listShow,jdbcType=INTEGER},
+      </if>
+      <if test="transState != null" >
+        trans_state = #{transState,jdbcType=INTEGER},
+      </if>
+      <if test="depositAmt != null" >
+        deposit_amt = #{depositAmt,jdbcType=INTEGER},
+      </if>
+      <if test="transFee != null" >
+        trans_fee = #{transFee,jdbcType=INTEGER},
+      </if>
+      <if test="eachPoint != null" >
+        each_point = #{eachPoint,jdbcType=INTEGER},
+      </if>
+      <if test="minNum != null" >
+        min_num = #{minNum,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null" >
+        max_num = #{maxNum,jdbcType=INTEGER},
+      </if>
+
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDesc != null" >
+        t_desc = #{tDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.StockIndex" >
+    update stock_index
+    set index_name = #{indexName,jdbcType=VARCHAR},
+      index_code = #{indexCode,jdbcType=VARCHAR},
+      index_gid = #{indexGid,jdbcType=VARCHAR},
+      home_show = #{homeShow,jdbcType=INTEGER},
+      list_show = #{listShow,jdbcType=INTEGER},
+      trans_state = #{transState,jdbcType=INTEGER},
+
+      deposit_amt = #{depositAmt,jdbcType=INTEGER},
+      trans_fee = #{transFee,jdbcType=INTEGER},
+      each_point = #{eachPoint,jdbcType=INTEGER},
+      min_num = #{minNum,jdbcType=INTEGER},
+      max_num = #{maxNum,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      t_desc = #{tDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="selectIndexByName" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_index
+    WHERE index_name = #{indexName}
+  </select>
+  <select id="selectIndexByCode" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_index
+    WHERE index_code = #{indexCode}
+  </select>
+
+
+
+
+
+  <select id="listByAdmin" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_index
+    <where>
+      <if test="homeShow != null">
+        and home_show = #{homeShow}
+      </if>
+      <if test="listShow != null">
+        and list_show = #{listShow}
+      </if>
+      <if test="transState != null">
+        and trans_state = #{transState}
+      </if>
+      <if test="indexCode != null and indexCode != '' ">
+        and index_code like CONCAT('%','${indexCode}','%')
+      </if>
+      <if test="indexName != null and indexName != '' ">
+        and index_name like CONCAT('%','${indexName}','%')
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+
+  <select id="queryHomeIndex" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_index
+    WHERE home_show = 1
+  </select>
+
+  <select id="queryListIndex" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_index
+    WHERE list_show = 1
+  </select>
+
+
+
+</mapper>
+

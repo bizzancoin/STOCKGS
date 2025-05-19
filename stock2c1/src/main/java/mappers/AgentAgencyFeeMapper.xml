@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.AgentAgencyFeeMapper">
+    <resultMap id="BaseResultMap" type="com.xc.pojo.AgentAgencyFee" >
+        <result column="id" property="id" />
+        <result column="agent_id" property="agentId" />
+        <result column="status" property="status" />
+        <result column="business_id" property="businessId" />
+        <result column="fee_type" property="feeType" />
+        <result column="ayment_type" property="aymentType" />
+        <result column="total_money" property="totalMoney" />
+        <result column="profit_money" property="profitMoney" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="remarks" property="remarks" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                agent_id,
+                status,
+                business_id,
+                fee_type,
+                ayment_type,
+                total_money,
+                profit_money,
+                add_time,
+                update_time,
+                remarks
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.AgentAgencyFee">
+        INSERT INTO agent_agency_fee
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != agentId'>
+                agent_id,
+            </if>
+            <if test ='null != status'>
+                status,
+            </if>
+            <if test ='null != businessId'>
+                business_id,
+            </if>
+            <if test ='null != feeType'>
+                fee_type,
+            </if>
+            <if test ='null != aymentType'>
+                ayment_type,
+            </if>
+            <if test ='null != totalMoney'>
+                total_money,
+            </if>
+            <if test ='null != profitMoney'>
+                profit_money,
+            </if>
+            add_time,
+            <if test ='null != updateTime'>
+                update_time,
+            </if>
+            <if test ='null != remarks'>
+                remarks
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != agentId'>
+                #{agentId},
+            </if>
+            <if test ='null != status'>
+                #{status},
+            </if>
+            <if test ='null != businessId'>
+                #{businessId},
+            </if>
+            <if test ='null != feeType'>
+                #{feeType},
+            </if>
+            <if test ='null != aymentType'>
+                #{aymentType},
+            </if>
+            <if test ='null != totalMoney'>
+                #{totalMoney},
+            </if>
+            <if test ='null != profitMoney'>
+                #{profitMoney},
+            </if>
+                now(),
+            <if test ='null != updateTime'>
+                #{updateTime},
+            </if>
+            <if test ='null != remarks'>
+                #{remarks}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM agent_agency_fee
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.AgentAgencyFee">
+        UPDATE agent_agency_fee
+        <set>
+            <if test ='null != agentId'>agent_id = #{agentId},</if>
+            <if test ='null != status'>status = #{status},</if>
+            <if test ='null != businessId'>business_id = #{businessId},</if>
+            <if test ='null != feeType'>fee_type = #{feeType},</if>
+            <if test ='null != aymentType'>ayment_type = #{aymentType},</if>
+            <if test ='null != addTime'>add_time = #{addTime},</if>
+            <if test ='null != updateTime'>update_time = #{updateTime},</if>
+            <if test ='null != remarks'>remarks = #{remarks}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM agent_agency_fee
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM agent_agency_fee
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="getAgentAgencyFeeList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM agent_agency_fee
+        WHERE agent_id = #{agent_id} and status = 1
+        order by id asc
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM agent_agency_fee
+    </select>
+
+</mapper>

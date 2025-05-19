@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.UserFundsPositionMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.UserFundsPosition" >
+        <result column="id" property="id" />
+        <result column="position_type" property="positionType" />
+        <result column="position_sn" property="positionSn" />
+        <result column="user_id" property="userId" />
+        <result column="nick_name" property="nickName" />
+        <result column="subaccount_number" property="subaccountNumber" />
+        <result column="agent_id" property="agentId" />
+        <result column="stock_id" property="stockId" />
+        <result column="stock_name" property="stockName" />
+        <result column="stock_code" property="stockCode" />
+        <result column="stock_gid" property="stockGid" />
+        <result column="stock_spell" property="stockSpell" />
+        <result column="buy_order_id" property="buyOrderId" />
+        <result column="buy_order_time" property="buyOrderTime" />
+        <result column="buy_order_price" property="buyOrderPrice" />
+        <result column="sell_order_id" property="sellOrderId" />
+        <result column="sell_order_time" property="sellOrderTime" />
+        <result column="sell_order_price" property="sellOrderPrice" />
+        <result column="order_direction" property="orderDirection" />
+        <result column="order_num" property="orderNum" />
+        <result column="order_lever" property="orderLever" />
+        <result column="order_total_price" property="orderTotalPrice" />
+        <result column="order_fee" property="orderFee" />
+        <result column="order_spread" property="orderSpread" />
+        <result column="order_stay_fee" property="orderStayFee" />
+        <result column="order_stay_days" property="orderStayDays" />
+        <result column="profit_and_lose" property="profitAndLose" />
+        <result column="all_profit_and_lose" property="allProfitAndLose" />
+        <result column="is_lock" property="isLock" />
+        <result column="lock_msg" property="lockMsg" />
+        <result column="stock_plate" property="stockPlate" />
+        <result column="spread_rate_price" property="spreadRatePrice" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                position_type,
+                position_sn,
+                user_id,
+                nick_name,
+                subaccount_number,
+                agent_id,
+                stock_id,
+                stock_name,
+                stock_code,
+                stock_gid,
+                stock_spell,
+                buy_order_id,
+                buy_order_time,
+                buy_order_price,
+                sell_order_id,
+                sell_order_time,
+                sell_order_price,
+                order_direction,
+                order_num,
+                order_lever,
+                order_total_price,
+                order_fee,
+                order_spread,
+                order_stay_fee,
+                order_stay_days,
+                profit_and_lose,
+                all_profit_and_lose,
+                is_lock,
+                lock_msg,
+                stock_plate,
+                spread_rate_price
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.UserFundsPosition">
+        INSERT INTO user_funds_position
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != positionType'>
+                position_type,
+            </if>
+            <if test ='null != positionSn'>
+                position_sn,
+            </if>
+            <if test ='null != userId'>
+                user_id,
+            </if>
+            <if test ='null != nickName'>
+                nick_name,
+            </if>
+            <if test ='null != subaccountNumber'>
+                subaccount_number,
+            </if>
+            <if test ='null != agentId'>
+                agent_id,
+            </if>
+            <if test ='null != stockId'>
+                stock_id,
+            </if>
+            <if test ='null != stockName'>
+                stock_name,
+            </if>
+            <if test ='null != stockCode'>
+                stock_code,
+            </if>
+            <if test ='null != stockGid'>
+                stock_gid,
+            </if>
+            <if test ='null != stockSpell'>
+                stock_spell,
+            </if>
+            <if test ='null != buyOrderId'>
+                buy_order_id,
+            </if>
+            <if test ='null != buyOrderTime'>
+                buy_order_time,
+            </if>
+            <if test ='null != buyOrderPrice'>
+                buy_order_price,
+            </if>
+            <if test ='null != sellOrderId'>
+                sell_order_id,
+            </if>
+            <if test ='null != sellOrderTime'>
+                sell_order_time,
+            </if>
+            <if test ='null != sellOrderPrice'>
+                sell_order_price,
+            </if>
+            <if test ='null != orderDirection'>
+                order_direction,
+            </if>
+            <if test ='null != orderNum'>
+                order_num,
+            </if>
+            <if test ='null != orderLever'>
+                order_lever,
+            </if>
+            <if test ='null != orderTotalPrice'>
+                order_total_price,
+            </if>
+            <if test ='null != orderFee'>
+                order_fee,
+            </if>
+            <if test ='null != orderSpread'>
+                order_spread,
+            </if>
+            <if test ='null != orderStayFee'>
+                order_stay_fee,
+            </if>
+            <if test ='null != orderStayDays'>
+                order_stay_days,
+            </if>
+            <if test ='null != profitAndLose'>
+                profit_and_lose,
+            </if>
+            <if test ='null != allProfitAndLose'>
+                all_profit_and_lose,
+            </if>
+            <if test ='null != isLock'>
+                is_lock,
+            </if>
+            <if test ='null != lockMsg'>
+                lock_msg,
+            </if>
+            <if test ='null != stockPlate'>
+                stock_plate,
+            </if>
+            <if test ='null != spreadRatePrice'>
+                spread_rate_price
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != positionType'>
+                #{positionType},
+            </if>
+            <if test ='null != positionSn'>
+                #{positionSn},
+            </if>
+            <if test ='null != userId'>
+                #{userId},
+            </if>
+            <if test ='null != nickName'>
+                #{nickName},
+            </if>
+            <if test ='null != subaccountNumber'>
+                #{subaccountNumber},
+            </if>
+            <if test ='null != agentId'>
+                #{agentId},
+            </if>
+            <if test ='null != stockId'>
+                #{stockId},
+            </if>
+            <if test ='null != stockName'>
+                #{stockName},
+            </if>
+            <if test ='null != stockCode'>
+                #{stockCode},
+            </if>
+            <if test ='null != stockGid'>
+                #{stockGid},
+            </if>
+            <if test ='null != stockSpell'>
+                #{stockSpell},
+            </if>
+            <if test ='null != buyOrderId'>
+                #{buyOrderId},
+            </if>
+            <if test ='null != buyOrderTime'>
+                #{buyOrderTime},
+            </if>
+            <if test ='null != buyOrderPrice'>
+                #{buyOrderPrice},
+            </if>
+            <if test ='null != sellOrderId'>
+                #{sellOrderId},
+            </if>
+            <if test ='null != sellOrderTime'>
+                #{sellOrderTime},
+            </if>
+            <if test ='null != sellOrderPrice'>
+                #{sellOrderPrice},
+            </if>
+            <if test ='null != orderDirection'>
+                #{orderDirection},
+            </if>
+            <if test ='null != orderNum'>
+                #{orderNum},
+            </if>
+            <if test ='null != orderLever'>
+                #{orderLever},
+            </if>
+            <if test ='null != orderTotalPrice'>
+                #{orderTotalPrice},
+            </if>
+            <if test ='null != orderFee'>
+                #{orderFee},
+            </if>
+            <if test ='null != orderSpread'>
+                #{orderSpread},
+            </if>
+            <if test ='null != orderStayFee'>
+                #{orderStayFee},
+            </if>
+            <if test ='null != orderStayDays'>
+                #{orderStayDays},
+            </if>
+            <if test ='null != profitAndLose'>
+                #{profitAndLose},
+            </if>
+            <if test ='null != allProfitAndLose'>
+                #{allProfitAndLose},
+            </if>
+            <if test ='null != isLock'>
+                #{isLock},
+            </if>
+            <if test ='null != lockMsg'>
+                #{lockMsg},
+            </if>
+            <if test ='null != stockPlate'>
+                #{stockPlate},
+            </if>
+            <if test ='null != spreadRatePrice'>
+                #{spreadRatePrice}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM user_funds_position
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.UserFundsPosition">
+        UPDATE user_funds_position
+        <set>
+            <if test ='null != positionType'>position_type = #{positionType},</if>
+            <if test ='null != positionSn'>position_sn = #{positionSn},</if>
+            <if test ='null != userId'>user_id = #{userId},</if>
+            <if test ='null != nickName'>nick_name = #{nickName},</if>
+            <if test ='null != subaccountNumber'>subaccount_number = #{subaccountNumber},</if>
+            <if test ='null != agentId'>agent_id = #{agentId},</if>
+            <if test ='null != stockId'>stock_id = #{stockId},</if>
+            <if test ='null != stockName'>stock_name = #{stockName},</if>
+            <if test ='null != stockCode'>stock_code = #{stockCode},</if>
+            <if test ='null != stockGid'>stock_gid = #{stockGid},</if>
+            <if test ='null != stockSpell'>stock_spell = #{stockSpell},</if>
+            <if test ='null != buyOrderId'>buy_order_id = #{buyOrderId},</if>
+            <if test ='null != buyOrderTime'>buy_order_time = #{buyOrderTime},</if>
+            <if test ='null != buyOrderPrice'>buy_order_price = #{buyOrderPrice},</if>
+            <if test ='null != sellOrderId'>sell_order_id = #{sellOrderId},</if>
+            <if test ='null != sellOrderTime'>sell_order_time = #{sellOrderTime},</if>
+            <if test ='null != sellOrderPrice'>sell_order_price = #{sellOrderPrice},</if>
+            <if test ='null != orderDirection'>order_direction = #{orderDirection},</if>
+            <if test ='null != orderNum'>order_num = #{orderNum},</if>
+            <if test ='null != orderLever'>order_lever = #{orderLever},</if>
+            <if test ='null != orderTotalPrice'>order_total_price = #{orderTotalPrice},</if>
+            <if test ='null != orderFee'>order_fee = #{orderFee},</if>
+            <if test ='null != orderSpread'>order_spread = #{orderSpread},</if>
+            <if test ='null != orderStayFee'>order_stay_fee = #{orderStayFee},</if>
+            <if test ='null != orderStayDays'>order_stay_days = #{orderStayDays},</if>
+            <if test ='null != profitAndLose'>profit_and_lose = #{profitAndLose},</if>
+            <if test ='null != allProfitAndLose'>all_profit_and_lose = #{allProfitAndLose},</if>
+            <if test ='null != isLock'>is_lock = #{isLock},</if>
+            <if test ='null != lockMsg'>lock_msg = #{lockMsg},</if>
+            <if test ='null != stockPlate'>stock_plate = #{stockPlate},</if>
+            <if test ='null != spreadRatePrice'>spread_rate_price = #{spreadRatePrice}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM user_funds_position
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM user_funds_position
+        where 1=1
+        <if test="keyword != null and keyword != ''">
+            and (nick_name like CONCAT('%',#{keyword},'%') or position_sn like CONCAT('%',#{keyword},'%'))
+        </if>
+        order by id desc
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM user_funds_position
+    </select>
+
+    <select id="findMyPositionByCodeAndSpell" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_funds_position
+        <where>
+            user_id = #{uid}
+            <if test="state != null ">
+                <if test="state == 0">
+                    and sell_order_id is null
+                </if>
+                <if test="state == 1">
+                    and sell_order_id is not null
+                </if>
+            </if>
+            <if test="stockCode != null and stockCode != '' ">
+                and stock_code like CONCAT('%','${stockCode}','%')
+            </if>
+            <if test="stockSpell != null and stockSpell != '' ">
+                and stock_spell like CONCAT('%','${stockSpell}','%')
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <!--根据单号查询配资信息-->
+    <select id="findPositionBySn" resultMap="BaseResultMap" parameterType="string">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_funds_position
+        WHERE position_sn = #{positionSn}
+    </select>
+
+    <!--根据分仓配资代码查询用户最早入仓股票-->
+    <select id="findUserFundsPositionByCode" parameterType="integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_funds_position
+        <where>
+            user_id = #{userId}
+            and stock_code = #{fundsCode}
+            and sell_order_price is null
+        </where>
+        ORDER BY id ASC
+        limit 1
+    </select>
+
+</mapper>

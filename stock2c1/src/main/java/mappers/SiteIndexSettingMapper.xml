@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.SiteIndexSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.SiteIndexSetting" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_max_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="force_sell_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="trans_am_begin" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_am_end" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_pm_begin" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_pm_end" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="down_limit" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="rise_limit" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="force_stop_remind_ratio" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, buy_max_percent, force_sell_percent, trans_am_begin, trans_am_end, trans_pm_begin, 
+    trans_pm_end, down_limit, rise_limit, force_stop_remind_ratio
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from site_index_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site_index_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.SiteIndexSetting" >
+    insert into site_index_setting (id, buy_max_percent, force_sell_percent, 
+      trans_am_begin, trans_am_end, trans_pm_begin, 
+      trans_pm_end, down_limit, rise_limit, force_stop_remind_ratio
+      )
+    values (#{id,jdbcType=INTEGER}, #{buyMaxPercent,jdbcType=DECIMAL}, #{forceSellPercent,jdbcType=DECIMAL}, 
+      #{transAmBegin,jdbcType=VARCHAR}, #{transAmEnd,jdbcType=VARCHAR}, #{transPmBegin,jdbcType=VARCHAR}, 
+      #{transPmEnd,jdbcType=VARCHAR}, #{downLimit,jdbcType=DECIMAL}, #{riseLimit,jdbcType=DECIMAL}, #{forceStopRemindRatio,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.SiteIndexSetting" >
+    insert into site_index_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="buyMaxPercent != null" >
+        buy_max_percent,
+      </if>
+      <if test="forceSellPercent != null" >
+        force_sell_percent,
+      </if>
+      <if test="transAmBegin != null" >
+        trans_am_begin,
+      </if>
+      <if test="transAmEnd != null" >
+        trans_am_end,
+      </if>
+      <if test="transPmBegin != null" >
+        trans_pm_begin,
+      </if>
+      <if test="transPmEnd != null" >
+        trans_pm_end,
+      </if>
+      <if test="downLimit != null" >
+        down_limit,
+      </if>
+      <if test="riseLimit != null" >
+        rise_limit,
+      </if>
+      <if test="forceStopRemindRatio != null" >
+        force_stop_remind_ratio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="buyMaxPercent != null" >
+        #{buyMaxPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="forceSellPercent != null" >
+        #{forceSellPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="transAmBegin != null" >
+        #{transAmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmEnd != null" >
+        #{transAmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmBegin != null" >
+        #{transPmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmEnd != null" >
+        #{transPmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="downLimit != null" >
+        #{downLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="riseLimit != null" >
+        #{riseLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="forceStopRemindRatio != null" >
+        #{forceStopRemindRatio,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.SiteIndexSetting" >
+    update site_index_setting
+    <set >
+      <if test="buyMaxPercent != null" >
+        buy_max_percent = #{buyMaxPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="forceSellPercent != null" >
+        force_sell_percent = #{forceSellPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="transAmBegin != null" >
+        trans_am_begin = #{transAmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmEnd != null" >
+        trans_am_end = #{transAmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmBegin != null" >
+        trans_pm_begin = #{transPmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmEnd != null" >
+        trans_pm_end = #{transPmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="downLimit != null" >
+        down_limit = #{downLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="riseLimit != null" >
+        rise_limit = #{riseLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="forceStopRemindRatio != null" >
+        force_stop_remind_ratio = #{forceStopRemindRatio,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.SiteIndexSetting" >
+    update site_index_setting
+    set buy_max_percent = #{buyMaxPercent,jdbcType=DECIMAL},
+      force_sell_percent = #{forceSellPercent,jdbcType=DECIMAL},
+      trans_am_begin = #{transAmBegin,jdbcType=VARCHAR},
+      trans_am_end = #{transAmEnd,jdbcType=VARCHAR},
+      trans_pm_begin = #{transPmBegin,jdbcType=VARCHAR},
+      trans_pm_end = #{transPmEnd,jdbcType=VARCHAR},
+      down_limit = #{downLimit,jdbcType=DECIMAL},
+      rise_limit = #{riseLimit,jdbcType=DECIMAL},
+      force_stop_remind_ratio = #{forceStopRemindRatio,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+  <select id="selectAllSiteIndexSetting" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_index_setting
+  </select>
+
+
+</mapper>
+
+
+
+

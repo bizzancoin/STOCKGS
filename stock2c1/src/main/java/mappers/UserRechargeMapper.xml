@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.UserRechargeMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.UserRecharge" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="nick_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_sn" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pay_sn" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pay_channel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pay_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="pay_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="pay_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, nick_name, agent_id, order_sn, pay_sn, pay_channel, pay_amt, order_status,
+    order_desc, add_time, pay_time, pay_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from user_recharge
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_recharge
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.UserRecharge" >
+    insert into user_recharge (id, user_id, nick_name,
+      agent_id, order_sn, pay_sn,
+      pay_channel, pay_amt, order_status,
+      order_desc, add_time, pay_time,pay_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR},
+      #{agentId,jdbcType=INTEGER}, #{orderSn,jdbcType=VARCHAR}, #{paySn,jdbcType=VARCHAR},
+      #{payChannel,jdbcType=VARCHAR}, #{payAmt,jdbcType=DECIMAL}, #{orderStatus,jdbcType=INTEGER},
+      #{orderDesc,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{payId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.UserRecharge" >
+    insert into user_recharge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="paySn != null" >
+        pay_sn,
+      </if>
+      <if test="payChannel != null" >
+        pay_channel,
+      </if>
+      <if test="payAmt != null" >
+        pay_amt,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderDesc != null" >
+        order_desc,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="payId != null" >
+        pay_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="paySn != null" >
+        #{paySn,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null" >
+        #{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmt != null" >
+        #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderDesc != null" >
+        #{orderDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payId != null" >
+        #{payId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.UserRecharge" >
+    update user_recharge
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="paySn != null" >
+        pay_sn = #{paySn,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null" >
+        pay_channel = #{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmt != null" >
+        pay_amt = #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderDesc != null" >
+        order_desc = #{orderDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.UserRecharge" >
+    update user_recharge
+    set user_id = #{userId,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      agent_id = #{agentId,jdbcType=INTEGER},
+      order_sn = #{orderSn,jdbcType=VARCHAR},
+      pay_sn = #{paySn,jdbcType=VARCHAR},
+      pay_channel = #{payChannel,jdbcType=VARCHAR},
+      pay_amt = #{payAmt,jdbcType=DECIMAL},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_desc = #{orderDesc,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+  <select id="checkInMoney" resultType="integer" parameterType="map">
+    SELECT COUNT(*) FROM user_recharge
+    WHERE user_id = #{userId}
+    and order_status = #{status}
+    and add_time > date_sub(now(), interval 1 hour)
+  </select>
+
+
+  <select id="findUserRechargeByOrderSn" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_recharge
+    WHERE order_sn = #{orderSn}
+  </select>
+
+
+  <select id="findUserChargeList" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_recharge
+    <where>
+      user_id = #{uid}
+      <if test="payChannel != null and payChannel != '' ">
+        and pay_channel = #{payChannel}
+      </if>
+      <if test="orderStatus != null and orderStatus != '' ">
+        and order_status = #{orderStatus}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+
+
+  <select id="listByAdmin" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_recharge
+    <where>
+      <if test="agentId != null">
+        and agent_id = #{agentId}
+      </if>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="realName != null and realName != '' ">
+        and nick_name like CONCAT('%','${realName}','%')
+      </if>
+      <if test="state != null">
+        and order_status = #{state}
+      </if>
+      <if test="begin_time != null ">
+        and pay_time <![CDATA[>=]]> #{begin_time}
+      </if>
+      <if test="end_time != null ">
+        and pay_time <![CDATA[<=]]> #{end_time}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+
+  <delete id="deleteByUserId" parameterType="integer" >
+    DELETE FROM user_recharge WHERE user_id = #{userId}
+  </delete>
+
+
+  <select id="listByAgent" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_recharge
+    <where>
+      agent_id = #{searchId}
+      <if test="realName != null and realName != '' ">
+        and nick_name like CONCAT('%','${realName}','%')
+      </if>
+      <if test="payChannel != null and payChannel != '' ">
+        and pay_channel = #{payChannel}
+      </if>
+      <if test="state != null">
+        and order_status = #{state}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+
+  <!--累计充值金额-->
+  <select id="CountChargeSumAmt" resultType="decimal" parameterType="integer">
+    SELECT sum(pay_amt) FROM user_recharge WHERE order_status = #{chargeState}
+  </select>
+
+  <!--今日充值金额-->
+  <select id="CountTotalRechargeAmountByTime" parameterType="integer" resultType="decimal">
+    select sum(IFNULL(pay_amt,0)) pay_amt from user_recharge where order_status = #{chargeState} and TO_DAYS(pay_time) = TO_DAYS(NOW())
+  </select>
+
+</mapper>

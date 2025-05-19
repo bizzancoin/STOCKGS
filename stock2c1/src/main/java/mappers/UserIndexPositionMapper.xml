@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.UserIndexPositionMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.UserIndexPosition" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="position_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="position_sn" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="index_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="index_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="index_gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="buy_order_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="buy_order_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="sell_order_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="sell_order_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_direction" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="all_deposit_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_fee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_stay_days" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="each_point" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="profit_and_lose" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="all_profit_and_lose" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="is_lock" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="lock_msg" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_lever" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, position_type, position_sn, user_id, real_name, agent_id, index_name, index_code,
+    index_gid, buy_order_time, buy_order_price, sell_order_time, sell_order_price, order_direction,
+    order_num, all_deposit_amt, order_fee, order_stay_days, each_point, profit_and_lose,
+    all_profit_and_lose, is_lock, lock_msg, order_lever
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from user_index_position
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_index_position
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.UserIndexPosition" >
+    insert into user_index_position (id, position_type, position_sn,
+      user_id, real_name, agent_id,
+      index_name, index_code, index_gid,
+      buy_order_time, buy_order_price, sell_order_time,
+      sell_order_price, order_direction, order_num,
+      all_deposit_amt, order_fee, order_stay_days,
+      each_point, profit_and_lose, all_profit_and_lose,
+      is_lock, lock_msg, order_lever)
+    values (#{id,jdbcType=INTEGER}, #{positionType,jdbcType=INTEGER}, #{positionSn,jdbcType=VARCHAR},
+      #{userId,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{agentId,jdbcType=INTEGER},
+      #{indexName,jdbcType=VARCHAR}, #{indexCode,jdbcType=VARCHAR}, #{indexGid,jdbcType=VARCHAR},
+      #{buyOrderTime,jdbcType=TIMESTAMP}, #{buyOrderPrice,jdbcType=DECIMAL}, #{sellOrderTime,jdbcType=TIMESTAMP},
+      #{sellOrderPrice,jdbcType=DECIMAL}, #{orderDirection,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER},
+      #{allDepositAmt,jdbcType=DECIMAL}, #{orderFee,jdbcType=DECIMAL}, #{orderStayDays,jdbcType=INTEGER},
+      #{eachPoint,jdbcType=DECIMAL}, #{profitAndLose,jdbcType=DECIMAL}, #{allProfitAndLose,jdbcType=DECIMAL},
+      #{isLock,jdbcType=INTEGER}, #{lockMsg,jdbcType=VARCHAR},#{orderLever,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.UserIndexPosition" >
+    insert into user_index_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="positionType != null" >
+        position_type,
+      </if>
+      <if test="positionSn != null" >
+        position_sn,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="indexName != null" >
+        index_name,
+      </if>
+      <if test="indexCode != null" >
+        index_code,
+      </if>
+      <if test="indexGid != null" >
+        index_gid,
+      </if>
+      <if test="buyOrderTime != null" >
+        buy_order_time,
+      </if>
+      <if test="buyOrderPrice != null" >
+        buy_order_price,
+      </if>
+      <if test="sellOrderTime != null" >
+        sell_order_time,
+      </if>
+      <if test="sellOrderPrice != null" >
+        sell_order_price,
+      </if>
+      <if test="orderDirection != null" >
+        order_direction,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="allDepositAmt != null" >
+        all_deposit_amt,
+      </if>
+      <if test="orderFee != null" >
+        order_fee,
+      </if>
+      <if test="orderStayDays != null" >
+        order_stay_days,
+      </if>
+      <if test="eachPoint != null" >
+        each_point,
+      </if>
+      <if test="profitAndLose != null" >
+        profit_and_lose,
+      </if>
+      <if test="allProfitAndLose != null" >
+        all_profit_and_lose,
+      </if>
+      <if test="isLock != null" >
+        is_lock,
+      </if>
+      <if test="lockMsg != null" >
+        lock_msg,
+      </if>
+      <if test="orderLever != null" >
+        order_lever,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="positionType != null" >
+        #{positionType,jdbcType=INTEGER},
+      </if>
+      <if test="positionSn != null" >
+        #{positionSn,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCode != null" >
+        #{indexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexGid != null" >
+        #{indexGid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyOrderTime != null" >
+        #{buyOrderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyOrderPrice != null" >
+        #{buyOrderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellOrderTime != null" >
+        #{sellOrderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellOrderPrice != null" >
+        #{sellOrderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderDirection != null" >
+        #{orderDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="allDepositAmt != null" >
+        #{allDepositAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFee != null" >
+        #{orderFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStayDays != null" >
+        #{orderStayDays,jdbcType=INTEGER},
+      </if>
+      <if test="eachPoint != null" >
+        #{eachPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="profitAndLose != null" >
+        #{profitAndLose,jdbcType=DECIMAL},
+      </if>
+      <if test="allProfitAndLose != null" >
+        #{allProfitAndLose,jdbcType=DECIMAL},
+      </if>
+      <if test="isLock != null" >
+        #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="lockMsg != null" >
+        #{lockMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="orderLever != null" >
+        #{orderLever,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.UserIndexPosition" >
+    update user_index_position
+    <set >
+      <if test="positionType != null" >
+        position_type = #{positionType,jdbcType=INTEGER},
+      </if>
+      <if test="positionSn != null" >
+        position_sn = #{positionSn,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        index_name = #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCode != null" >
+        index_code = #{indexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexGid != null" >
+        index_gid = #{indexGid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyOrderTime != null" >
+        buy_order_time = #{buyOrderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyOrderPrice != null" >
+        buy_order_price = #{buyOrderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellOrderTime != null" >
+        sell_order_time = #{sellOrderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellOrderPrice != null" >
+        sell_order_price = #{sellOrderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderDirection != null" >
+        order_direction = #{orderDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="allDepositAmt != null" >
+        all_deposit_amt = #{allDepositAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFee != null" >
+        order_fee = #{orderFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStayDays != null" >
+        order_stay_days = #{orderStayDays,jdbcType=INTEGER},
+      </if>
+      <if test="eachPoint != null" >
+        each_point = #{eachPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="profitAndLose != null" >
+        profit_and_lose = #{profitAndLose,jdbcType=DECIMAL},
+      </if>
+      <if test="allProfitAndLose != null" >
+        all_profit_and_lose = #{allProfitAndLose,jdbcType=DECIMAL},
+      </if>
+      <if test="isLock != null" >
+        is_lock = #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="lockMsg != null" >
+        lock_msg = #{lockMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="orderLever != null" >
+        order_lever = #{orderLever,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.UserIndexPosition" >
+    update user_index_position
+    set position_type = #{positionType,jdbcType=INTEGER},
+      position_sn = #{positionSn,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      real_name = #{realName,jdbcType=VARCHAR},
+      agent_id = #{agentId,jdbcType=INTEGER},
+      index_name = #{indexName,jdbcType=VARCHAR},
+      index_code = #{indexCode,jdbcType=VARCHAR},
+      index_gid = #{indexGid,jdbcType=VARCHAR},
+      buy_order_time = #{buyOrderTime,jdbcType=TIMESTAMP},
+      buy_order_price = #{buyOrderPrice,jdbcType=DECIMAL},
+      sell_order_time = #{sellOrderTime,jdbcType=TIMESTAMP},
+      sell_order_price = #{sellOrderPrice,jdbcType=DECIMAL},
+      order_direction = #{orderDirection,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      all_deposit_amt = #{allDepositAmt,jdbcType=DECIMAL},
+      order_fee = #{orderFee,jdbcType=DECIMAL},
+      order_stay_days = #{orderStayDays,jdbcType=INTEGER},
+      each_point = #{eachPoint,jdbcType=DECIMAL},
+      profit_and_lose = #{profitAndLose,jdbcType=DECIMAL},
+      all_profit_and_lose = #{allProfitAndLose,jdbcType=DECIMAL},
+      is_lock = #{isLock,jdbcType=INTEGER},
+      lock_msg = #{lockMsg,jdbcType=VARCHAR},
+      order_lever = #{orderLever,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+  <select id="selectIndexPositionBySn" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_index_position
+    WHERE position_sn = #{positionSn}
+  </select>
+
+
+  <select id="findMyIndexPositionByNameAndCode" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_index_position
+    <where>
+      user_id = #{userId}
+      <if test="state != null ">
+        <if test="state == 0">
+          and sell_order_price is null
+        </if>
+        <if test="state == 1">
+          and sell_order_price is not null
+        </if>
+      </if>
+      <if test="indexName != null and indexName != '' ">
+        and index_name like CONCAT('%','${indexName}','%')
+      </if>
+      <if test="indexCode != null and indexCode != '' ">
+        and index_code like CONCAT('%','${indexCode}','%')
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+
+
+  <select id="listByAdmin" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_index_position
+    <where>
+      <if test="searchId != null  ">
+        and agent_id = #{searchId}
+      </if>
+      <if test="state != null  ">
+        <if test="state == 0">
+          and sell_order_price is null
+        </if>
+        <if test="state == 1">
+          and sell_order_price is not null
+        </if>
+      </if>
+      <if test="userId != null and userId != '' ">
+        and user_id = #{userId}
+      </if>
+      <if test="positionSn != null and positionSn != '' ">
+        and position_sn like CONCAT('%','${positionSn}','%')
+      </if>
+      <if test="positionType != null ">
+        and position_type = #{positionType}
+      </if>
+      <if test="beginTime != null ">
+        and sell_order_time <![CDATA[>=]]> #{beginTime}
+      </if>
+      <if test="endTime != null ">
+        and sell_order_time <![CDATA[<=]]> #{endTime}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+  <select id="listByAgent" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_index_position
+    <where>
+      <if test="searchId != null  ">
+        and agent_id = #{searchId}
+      </if>
+      <if test="state != null  ">
+        <if test="state == 0">
+          and sell_order_price is null
+        </if>
+        <if test="state == 1">
+          and sell_order_price is not null
+        </if>
+      </if>
+      <if test="userId != null and userId != '' ">
+        and user_id = #{userId}
+      </if>
+      <if test="positionSn != null and positionSn != '' ">
+        and position_sn like CONCAT('%','${positionSn}','%')
+      </if>
+      <if test="positionType != null ">
+        and position_type = #{positionType}
+      </if>
+      <if test="beginTime != null ">
+        and sell_order_time <![CDATA[>=]]> #{beginTime}
+      </if>
+      <if test="endTime != null ">
+        and sell_order_time <![CDATA[<=]]> #{endTime}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+
+
+  <select id="findPositionByUserIdAndSellPriceIsNull" parameterType="integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_index_position
+    WHERE user_id = #{userId} and sell_order_price is null
+    order by id desc
+  </select>
+
+
+
+  <select id="findDistinctUserIdList" resultType="integer" >
+    SELECT DISTINCT user_id FROM user_index_position WHERE sell_order_price is null
+  </select>
+
+  <!--根据指数代码查询用户最早入仓股票-->
+  <select id="findUserIndexPositionByCode" parameterType="integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_index_position
+    <where>
+      user_id = #{userId}
+      and index_gid = #{indexGid}
+      and sell_order_price is null
+    </where>
+    ORDER BY id ASC
+    limit 1
+  </select>
+
+
+
+</mapper>
+
+
+
+

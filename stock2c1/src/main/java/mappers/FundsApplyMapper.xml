@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.FundsApplyMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.FundsApply" >
+        <result column="id" property="id" />
+        <result column="order_number" property="orderNumber" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="user_phone" property="userPhone" />
+        <result column="funds_type" property="fundsType" />
+        <result column="margin" property="margin" />
+        <result column="funds_amount" property="fundsAmount" />
+        <result column="lever" property="lever" />
+        <result column="total_trading_amount" property="totalTradingAmount" />
+        <result column="enabled_trading_amount" property="enabledTradingAmount" />
+        <result column="pay_amount" property="payAmount" />
+        <result column="traders_cycle" property="tradersCycle" />
+        <result column="subaccount_number" property="subaccountNumber" />
+        <result column="manage_fee" property="manageFee" />
+        <result column="status" property="status" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="audit_time" property="auditTime" />
+        <result column="begin_time" property="beginTime" />
+        <result column="end_time" property="endTime" />
+        <result column="audit_opinion" property="auditOpinion" />
+        <result column="line_warning" property="lineWarning" />
+        <result column="line_unwind" property="lineUnwind" />
+        <result column="ratio_warning" property="ratioWarning" />
+        <result column="ratio_unwind" property="ratioUnwind" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                order_number,
+                user_id,
+                user_name,
+                user_phone,
+                funds_type,
+                margin,
+                funds_amount,
+                lever,
+                total_trading_amount,
+                enabled_trading_amount,
+                pay_amount,
+                traders_cycle,
+                subaccount_number,
+                manage_fee,
+                status,
+                add_time,
+                update_time,
+                audit_time,
+                begin_time,
+                end_time,
+                audit_opinion,
+                line_warning,
+                line_unwind,
+                ratio_warning,
+                ratio_unwind
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.FundsApply">
+        INSERT INTO funds_apply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != orderNumber'>
+                order_number,
+            </if>
+            <if test ='null != userId'>
+                user_id,
+            </if>
+            <if test ='null != userName'>
+                user_name,
+            </if>
+            <if test ='null != userPhone'>
+                user_phone,
+            </if>
+            <if test ='null != fundsType'>
+                funds_type,
+            </if>
+            <if test ='null != margin'>
+                margin,
+            </if>
+            <if test ='null != fundsAmount'>
+                funds_amount,
+            </if>
+            <if test ='null != lever'>
+                lever,
+            </if>
+            <if test ='null != totalTradingAmount'>
+                total_trading_amount,
+            </if>
+            <if test ='null != enabledTradingAmount'>
+                enabled_trading_amount,
+            </if>
+            <if test ='null != payAmount'>
+                pay_amount,
+            </if>
+            <if test ='null != tradersCycle'>
+                traders_cycle,
+            </if>
+            <if test ='null != subaccountNumber'>
+                subaccount_number,
+            </if>
+            <if test ='null != manageFee'>
+                manage_fee,
+            </if>
+            <if test ='null != status'>
+                status,
+            </if>
+            <if test ='null != addTime'>
+                add_time,
+            </if>
+            <if test ='null != updateTime'>
+                update_time,
+            </if>
+            <if test ='null != auditTime'>
+                audit_time,
+            </if>
+            <if test ='null != beginTime'>
+                begin_time,
+            </if>
+            <if test ='null != endTime'>
+                end_time,
+            </if>
+            <if test ='null != auditOpinion'>
+                audit_opinion
+            </if>
+            <if test ='null != lineWarning'>
+                line_warning,
+            </if>
+            <if test ='null != lineUnwind'>
+                line_unwind
+            </if>
+            <if test ='null != ratioWarning'>
+                ratio_warning,
+            </if>
+            <if test ='null != ratioUnwind'>
+                ratio_unwind
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != orderNumber'>
+                #{orderNumber},
+            </if>
+            <if test ='null != userId'>
+                #{userId},
+            </if>
+            <if test ='null != userName'>
+                #{userName},
+            </if>
+            <if test ='null != userPhone'>
+                #{userPhone},
+            </if>
+            <if test ='null != fundsType'>
+                #{fundsType},
+            </if>
+            <if test ='null != margin'>
+                #{margin},
+            </if>
+            <if test ='null != fundsAmount'>
+                #{fundsAmount},
+            </if>
+            <if test ='null != lever'>
+                #{lever},
+            </if>
+            <if test ='null != totalTradingAmount'>
+                #{totalTradingAmount},
+            </if>
+            <if test ='null != enabledTradingAmount'>
+                #{enabledTradingAmount},
+            </if>
+            <if test ='null != payAmount'>
+                #{payAmount},
+            </if>
+            <if test ='null != tradersCycle'>
+                #{tradersCycle},
+            </if>
+            <if test ='null != subaccountNumber'>
+                #{subaccountNumber},
+            </if>
+            <if test ='null != manageFee'>
+                #{manageFee},
+            </if>
+            <if test ='null != status'>
+                #{status},
+            </if>
+            <if test ='null != addTime'>
+                #{addTime},
+            </if>
+            <if test ='null != updateTime'>
+                #{updateTime},
+            </if>
+            <if test ='null != auditTime'>
+                #{auditTime},
+            </if>
+            <if test ='null != beginTime'>
+                #{beginTime},
+            </if>
+            <if test ='null != endTime'>
+                #{endTime},
+            </if>
+            <if test ='null != auditOpinion'>
+                #{auditOpinion}
+            </if>
+            <if test ='null != lineWarning'>
+                #{lineWarning},
+            </if>
+            <if test ='null != lineUnwind'>
+                #{lineUnwind}
+            </if>
+            <if test ='null != ratioWarning'>
+                #{ratioWarning},
+            </if>
+            <if test ='null != ratioUnwind'>
+                #{ratioUnwind}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM funds_apply
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.FundsApply">
+        UPDATE funds_apply
+        <set>
+            <if test ='null != orderNumber'>order_number = #{orderNumber},</if>
+            <if test ='null != userId'>user_id = #{userId},</if>
+            <if test ='null != userName'>user_name = #{userName},</if>
+            <if test ='null != userPhone'>user_phone = #{userPhone},</if>
+            <if test ='null != fundsType'>funds_type = #{fundsType},</if>
+            <if test ='null != margin'>margin = #{margin},</if>
+            <if test ='null != fundsAmount'>funds_amount = #{fundsAmount},</if>
+            <if test ='null != lever'>lever = #{lever},</if>
+            <if test ='null != totalTradingAmount'>total_trading_amount = #{totalTradingAmount},</if>
+            <if test ='null != enabledTradingAmount'>enabled_trading_amount = #{enabledTradingAmount},</if>
+            <if test ='null != payAmount'>pay_amount = #{payAmount},</if>
+            <if test ='null != tradersCycle'>traders_cycle = #{tradersCycle},</if>
+            <if test ='null != subaccountNumber'>subaccount_number = #{subaccountNumber},</if>
+            <if test ='null != manageFee'>manage_fee = #{manageFee},</if>
+            <if test ='null != status'>status = #{status},</if>
+            <if test ='null != addTime'>add_time = #{addTime},</if>
+            <if test ='null != updateTime'>update_time = #{updateTime},</if>
+            <if test ='null != auditTime'>audit_time = #{auditTime},</if>
+            <if test ='null != beginTime'>begin_time = #{beginTime},</if>
+            <if test ='null != endTime'>end_time = #{endTime},</if>
+            <if test ='null != auditOpinion'>audit_opinion = #{auditOpinion},</if>
+            <if test ='null != lineWarning'>line_warning = #{lineWarning},</if>
+            <if test ='null != lineUnwind'>line_unwind = #{lineUnwind},</if>
+            <if test ='null != ratioWarning'>ratio_warning = #{ratioWarning},</if>
+            <if test ='null != ratioUnwind'>ratio_unwind = #{ratioUnwind}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_apply
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_apply
+        where 1=1
+        <if test="keyword != null and keyword != ''">
+            and (order_number = #{keyword} or user_phone = #{keyword} )
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        order by id desc
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM funds_apply
+    </select>
+
+    <!--用户配资列表-->
+    <select id="getUserApplyList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_apply
+        where 1=1
+        and user_id = #{userId}
+        order by id desc
+    </select>
+
+    <!--用户操盘中子账户-->
+    <select id="getUserEnabledSubaccount" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_apply
+        where 1=1
+        and user_id = #{userId}
+        and status = 1
+        order by id desc
+    </select>
+
+    <!--查询用户分仓保证金-->
+    <select id="getUserMarginList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_apply
+        where 1=1
+        and user_id = #{userId}
+        and (status = 1 or status = 3)
+
+    </select>
+
+</mapper>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+
+    <display-name>stock2c1</display-name>
+
+    <filter>
+        <description>跨域过滤器</description>
+        <filter-name>CORS</filter-name>
+        <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+        <init-param>
+            <param-name>cors.allowOrigin</param-name>
+            <param-value>*</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cors.supportedMethods</param-name>
+            <param-value>GET, POST, HEAD, PUT, DELETE</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cors.supportedHeaders</param-name>
+            <param-value>*</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cors.exposedHeaders</param-name>
+            <param-value>Set-Cookie</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cors.supportsCredentials</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CORS</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!--跨域请求过滤器 filter-->
+    <!--<filter>-->
+    <!--<filter-name>crossDomainFilter</filter-name>-->
+    <!--<filter-class>classes.com.xc.common.filter.CrossFilter</filter-class>-->
+    <!--<init-param>-->
+    <!--<param-name>targetFilterLifecycle</param-name>-->
+    <!--<param-value>true</param-value>-->
+    <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+    <!--<filter-name>crossDomainFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern> &lt;!&ndash;可以针对某个接口进行限制&ndash;&gt;-->
+    <!--</filter-mapping>-->
+
+
+    <!--characterEncodingFilter-->
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
+
+    <!--重置redis session有效时间filter-->
+    <filter>
+        <filter-name>sessionExpireFilter</filter-name>
+        <filter-class>com.xc.common.filter.SessionExpireFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sessionExpireFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <!--spring session framework-->
+    <!--<filter>-->
+    <!--<filter-name>springSessionRepositoryFilter</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+    <!--<filter-name>springSessionRepositoryFilter</filter-name>-->
+    <!--<url-pattern>*.do</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <!--监听web容器启动和关闭的监听器-->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <!--web容器和spring容器进行整合的listener-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:applicationContext.xml
+        </param-value>
+    </context-param>
+
+
+    <!--dispatcher servlet-->
+    <!--<servlet>-->
+    <!--<servlet-name>dispatcher</servlet-name>-->
+    <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+    <!--这里可以修改dispatcher servlet的路径-->
+    <!--<init-param>-->
+    <!--<param-name>contextConfigLocation</param-name>-->
+    <!--<param-value>/WEB-INF/XXX.xml</param-value>-->
+    <!--</init-param>-->
+    <!--<load-on-startup>1</load-on-startup>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>dispatcher</servlet-name>-->
+    <!--<url-pattern>*.do</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <!--过滤XSS攻击 -->
+<!--    <servlet>-->
+<!--        <servlet-name>dispatcher</servlet-name>-->
+<!--        <servlet-class>com.xc.security.xss.DispatcherServletWrapper</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!--如果是改成restful接口，这里要配置成/-->
+<!--    <servlet-mapping>-->
+<!--    <servlet-name>dispatcher</servlet-name>-->
+<!--    <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+
+    <!--错误page-->
+    <!--<error-page>-->
+    <!--<error-code>404</error-code>-->
+    <!--<location>/WEB-INF/error/404.html</location>-->
+    <!--</error-page>-->
+    <!--<error-page>-->
+    <!--<error-code>500</error-code>-->
+    <!--<location>/WEB-INF/error/404.html</location>-->
+    <!--</error-page>-->
+
+
+
+</web-app>
+

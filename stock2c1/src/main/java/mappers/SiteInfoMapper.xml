@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.SiteInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.SiteInfo" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="site_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_host" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_keywords" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_logo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_logo_sm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_qq" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_android_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_android_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_ios_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_ios_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_email_from" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_email_to" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_language" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_version_info" jdbcType="VARCHAR" javaType="java.lang.String" />
+
+      <arg column="site_intro" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="risk_notice" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="company_info" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cert_img1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cert_img2" jdbcType="VARCHAR" javaType="java.lang.String" />
+
+      <arg column="reg_agree" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trade_agree" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="site_color" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trade_agree_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reg_agree_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="online_service" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trade_agree_title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sms_display" jdbcType="BIT" javaType="java.lang.Boolean" />
+
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, site_name, site_host, site_keywords, site_description, site_logo, site_logo_sm, site_qq,
+    site_phone, site_android_img, site_android_url, site_ios_img, site_ios_url, site_email_from, 
+    site_email_to, site_language, site_version_info, site_intro, risk_notice, company_info,
+    cert_img1, cert_img2, reg_agree, trade_agree, site_color,trade_agree_text,reg_agree_text,online_service,trade_agree_title,sms_display
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from site_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.SiteInfo" >
+    insert into site_info (id, site_name, site_host, site_keywords,
+      site_description, site_logo, site_logo_sm, 
+      site_qq, site_phone, site_android_img, 
+      site_android_url, site_ios_img, site_ios_url, 
+      site_email_from, site_email_to, site_language, 
+      site_version_info, site_intro, risk_notice,
+      company_info, cert_img1, cert_img2,
+      reg_agree, trade_agree, site_color,trade_agree_text,reg_agree_text,online_service,trade_agree_title
+      ,sms_display)
+    values (#{id,jdbcType=INTEGER}, #{siteName,jdbcType=VARCHAR}, #{siteHost,jdbcType=VARCHAR}, #{siteKeywords,jdbcType=VARCHAR},
+      #{siteDescription,jdbcType=VARCHAR}, #{siteLogo,jdbcType=VARCHAR}, #{siteLogoSm,jdbcType=VARCHAR}, 
+      #{siteQq,jdbcType=VARCHAR}, #{sitePhone,jdbcType=VARCHAR}, #{siteAndroidImg,jdbcType=VARCHAR}, 
+      #{siteAndroidUrl,jdbcType=VARCHAR}, #{siteIosImg,jdbcType=VARCHAR}, #{siteIosUrl,jdbcType=VARCHAR}, 
+      #{siteEmailFrom,jdbcType=VARCHAR}, #{siteEmailTo,jdbcType=VARCHAR}, #{siteLanguage,jdbcType=VARCHAR}, 
+      #{siteVersionInfo,jdbcType=VARCHAR}, #{siteIntro,jdbcType=VARCHAR} ,#{riskNotice,jdbcType=VARCHAR},
+      #{companyInfo,jdbcType=VARCHAR}, #{certImg1,jdbcType=VARCHAR}, #{certImg2,jdbcType=VARCHAR},
+      #{regAgree,jdbcType=VARCHAR},#{tradeAgree,jdbcType=VARCHAR},#{siteColor,jdbcType=VARCHAR}
+      ,#{tradeAgreeText,jdbcType=VARCHAR},#{regAgreeText,jdbcType=VARCHAR},#{onlineService,jdbcType=VARCHAR}
+      ,#{tradeAgreeTitle,jdbcType=VARCHAR},#{smsDisplay,jdbcType=BIT}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.xc.pojo.SiteInfo" >
+    insert into site_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="siteName != null" >
+        site_name,
+      </if>
+      <if test="siteHost != null" >
+        site_host,
+      </if>
+      <if test="siteKeywords != null" >
+        site_keywords,
+      </if>
+      <if test="siteDescription != null" >
+        site_description,
+      </if>
+      <if test="siteLogo != null" >
+        site_logo,
+      </if>
+      <if test="siteLogoSm != null" >
+        site_logo_sm,
+      </if>
+      <if test="siteQq != null" >
+        site_qq,
+      </if>
+      <if test="sitePhone != null" >
+        site_phone,
+      </if>
+      <if test="siteAndroidImg != null" >
+        site_android_img,
+      </if>
+      <if test="siteAndroidUrl != null" >
+        site_android_url,
+      </if>
+      <if test="siteIosImg != null" >
+        site_ios_img,
+      </if>
+      <if test="siteIosUrl != null" >
+        site_ios_url,
+      </if>
+      <if test="siteEmailFrom != null" >
+        site_email_from,
+      </if>
+      <if test="siteEmailTo != null" >
+        site_email_to,
+      </if>
+      <if test="siteLanguage != null" >
+        site_language,
+      </if>
+      <if test="siteVersionInfo != null" >
+        site_version_info,
+      </if>
+
+      <if test="siteIntro != null" >
+        site_intro,
+      </if>
+      <if test="riskNotice != null" >
+        risk_notice,
+      </if>
+      <if test="companyInfo != null" >
+        company_info,
+      </if>
+      <if test="certImg1 != null" >
+        cert_img1,
+      </if>
+      <if test="certImg2 != null" >
+        cert_img2,
+      </if>
+
+      <if test="regAgree != null" >
+        reg_agree,
+      </if>
+      <if test="tradeAgree != null" >
+        trade_agree,
+      </if>
+      <if test="siteColor != null" >
+        site_color,
+      </if>
+      <if test="tradeAgreeText != null" >
+        trade_agree_text,
+      </if>
+      <if test="regAgreeText != null" >
+        reg_agree_text,
+      </if>
+      <if test="onlineService != null" >
+        online_service,
+      </if>
+      <if test="tradeAgreeTitle != null" >
+        trade_agree_title,
+      </if>
+      <if test="smsDisplay != null" >
+        sms_display,
+      </if>
+
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="siteName != null" >
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="siteHost != null" >
+        #{siteHost,jdbcType=VARCHAR},
+      </if>
+      <if test="siteKeywords != null" >
+        #{siteKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="siteDescription != null" >
+        #{siteDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLogo != null" >
+        #{siteLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLogoSm != null" >
+        #{siteLogoSm,jdbcType=VARCHAR},
+      </if>
+      <if test="siteQq != null" >
+        #{siteQq,jdbcType=VARCHAR},
+      </if>
+      <if test="sitePhone != null" >
+        #{sitePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="siteAndroidImg != null" >
+        #{siteAndroidImg,jdbcType=VARCHAR},
+      </if>
+      <if test="siteAndroidUrl != null" >
+        #{siteAndroidUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteIosImg != null" >
+        #{siteIosImg,jdbcType=VARCHAR},
+      </if>
+      <if test="siteIosUrl != null" >
+        #{siteIosUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteEmailFrom != null" >
+        #{siteEmailFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="siteEmailTo != null" >
+        #{siteEmailTo,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLanguage != null" >
+        #{siteLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="siteVersionInfo != null" >
+        #{siteVersionInfo,jdbcType=VARCHAR},
+      </if>
+
+      <if test="siteIntro != null" >
+        #{siteIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="riskNotice != null" >
+        #{riskNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="companyInfo != null" >
+        #{companyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="certImg1 != null" >
+        #{certImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="certImg2 != null" >
+        #{certImg2,jdbcType=VARCHAR},
+      </if>
+
+      <if test="regAgree != null" >
+        #{regAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAgree != null" >
+        #{tradeAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="siteColor != null" >
+        #{siteColor,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAgreeText != null" >
+        #{tradeAgreeText,jdbcType=VARCHAR},
+      </if>
+      <if test="regAgreeText != null" >
+        #{regAgreeText,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineService != null" >
+        #{onlineService,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAgreeTitle != null" >
+        #{tradeAgreeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="smsDisplay != null" >
+        #{smsDisplay,jdbcType=BIT},
+      </if>
+
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.SiteInfo" >
+    update site_info
+    <set >
+      <if test="siteName != null" >
+        site_name = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="siteHost != null" >
+        site_host = #{siteHost,jdbcType=VARCHAR},
+      </if>
+      <if test="siteKeywords != null" >
+        site_keywords = #{siteKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="siteDescription != null" >
+        site_description = #{siteDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLogo != null" >
+        site_logo = #{siteLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLogoSm != null" >
+        site_logo_sm = #{siteLogoSm,jdbcType=VARCHAR},
+      </if>
+      <if test="siteQq != null" >
+        site_qq = #{siteQq,jdbcType=VARCHAR},
+      </if>
+      <if test="sitePhone != null" >
+        site_phone = #{sitePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="siteAndroidImg != null" >
+        site_android_img = #{siteAndroidImg,jdbcType=VARCHAR},
+      </if>
+      <if test="siteAndroidUrl != null" >
+        site_android_url = #{siteAndroidUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteIosImg != null" >
+        site_ios_img = #{siteIosImg,jdbcType=VARCHAR},
+      </if>
+      <if test="siteIosUrl != null" >
+        site_ios_url = #{siteIosUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteEmailFrom != null" >
+        site_email_from = #{siteEmailFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="siteEmailTo != null" >
+        site_email_to = #{siteEmailTo,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLanguage != null" >
+        site_language = #{siteLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="siteVersionInfo != null" >
+        site_version_info = #{siteVersionInfo,jdbcType=VARCHAR},
+      </if>
+
+      <if test="siteIntro != null" >
+        site_intro = #{siteIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="riskNotice != null" >
+        risk_notice = #{riskNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="companyInfo != null" >
+        company_info = #{companyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="certImg1 != null" >
+        cert_img1 = #{certImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="certImg2 != null" >
+        cert_img2 = #{certImg2,jdbcType=VARCHAR},
+      </if>
+
+      <if test="regAgree != null" >
+        reg_agree = #{regAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAgree != null" >
+        trade_agree = #{tradeAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="siteColor != null" >
+        site_color = #{siteColor,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAgreeText != null" >
+        trade_agree_text = #{tradeAgreeText,jdbcType=VARCHAR},
+      </if>
+      <if test="regAgreeText != null" >
+        reg_agree_text = #{regAgreeText,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineService != null" >
+        online_service = #{onlineService,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAgreeTitle != null" >
+        trade_agree_title = #{tradeAgreeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="smsDisplay != null" >
+        sms_display = #{smsDisplay,jdbcType=BIT},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.SiteInfo" >
+    update site_info
+    set site_name = #{siteName,jdbcType=VARCHAR},
+      site_host = #{siteHost,jdbcType=VARCHAR},
+      site_keywords = #{siteKeywords,jdbcType=VARCHAR},
+      site_description = #{siteDescription,jdbcType=VARCHAR},
+      site_logo = #{siteLogo,jdbcType=VARCHAR},
+      site_logo_sm = #{siteLogoSm,jdbcType=VARCHAR},
+      site_qq = #{siteQq,jdbcType=VARCHAR},
+      site_phone = #{sitePhone,jdbcType=VARCHAR},
+      site_android_img = #{siteAndroidImg,jdbcType=VARCHAR},
+      site_android_url = #{siteAndroidUrl,jdbcType=VARCHAR},
+      site_ios_img = #{siteIosImg,jdbcType=VARCHAR},
+      site_ios_url = #{siteIosUrl,jdbcType=VARCHAR},
+      site_email_from = #{siteEmailFrom,jdbcType=VARCHAR},
+      site_email_to = #{siteEmailTo,jdbcType=VARCHAR},
+      site_language = #{siteLanguage,jdbcType=VARCHAR},
+      site_version_info = #{siteVersionInfo,jdbcType=VARCHAR},
+
+      site_intro = #{siteIntro,jdbcType=VARCHAR},
+      risk_notice = #{riskNotice,jdbcType=VARCHAR},
+      company_info = #{companyInfo,jdbcType=VARCHAR},
+      cert_img1 = #{certImg1,jdbcType=VARCHAR},
+      cert_img2 = #{certImg2,jdbcType=VARCHAR},
+
+      reg_agree = #{regAgree,jdbcType=VARCHAR},
+      trade_agree = #{tradeAgree,jdbcType=VARCHAR},
+      site_color = #{siteColor,jdbcType=VARCHAR},
+      trade_agree_text = #{tradeAgreeText,jdbcType=VARCHAR},
+      reg_agree_text = #{regAgreeText,jdbcType=VARCHAR},
+      online_service = #{onlineService,jdbcType=VARCHAR},
+      trade_agree_title = #{tradeAgreeTitle,jdbcType=VARCHAR},
+      sms_display = #{smsDisplay,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_info
+  </select>
+
+
+
+</mapper>

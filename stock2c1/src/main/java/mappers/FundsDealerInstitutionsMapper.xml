@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.FundsDealerInstitutionsMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.FundsDealerInstitutions" >
+        <result column="id" property="id" />
+        <result column="dealer_number" property="dealerNumber" />
+        <result column="dealer_name" property="dealerName" />
+        <result column="client_version_number" property="clientVersionNumber" />
+        <result column="remarks" property="remarks" />
+        <result column="status" property="status" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                dealer_number,
+                dealer_name,
+                client_version_number,
+                remarks,
+                status,
+                add_time,
+                update_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.FundsDealerInstitutions">
+        INSERT INTO funds_dealer_institutions
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != dealerNumber'>
+                dealer_number,
+            </if>
+            <if test ='null != dealerName'>
+                dealer_name,
+            </if>
+            <if test ='null != clientVersionNumber'>
+                client_version_number,
+            </if>
+            <if test ='null != remarks'>
+                remarks,
+            </if>
+            <if test ='null != status'>
+                status,
+            </if>
+            <if test ='null != addTime'>
+                add_time,
+            </if>
+            <if test ='null != updateTime'>
+                update_time
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != dealerNumber'>
+                #{dealerNumber},
+            </if>
+            <if test ='null != dealerName'>
+                #{dealerName},
+            </if>
+            <if test ='null != clientVersionNumber'>
+                #{clientVersionNumber},
+            </if>
+            <if test ='null != remarks'>
+                #{remarks},
+            </if>
+            <if test ='null != status'>
+                #{status},
+            </if>
+            <if test ='null != addTime'>
+                #{addTime},
+            </if>
+            <if test ='null != updateTime'>
+                #{updateTime}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM funds_dealer_institutions
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.FundsDealerInstitutions">
+        UPDATE funds_dealer_institutions
+        <set>
+            <if test ='null != dealerNumber'>dealer_number = #{dealerNumber},</if>
+            <if test ='null != dealerName'>dealer_name = #{dealerName},</if>
+            <if test ='null != clientVersionNumber'>client_version_number = #{clientVersionNumber},</if>
+            <if test ='null != remarks'>remarks = #{remarks},</if>
+            <if test ='null != status'>status = #{status},</if>
+            <if test ='null != addTime'>add_time = #{addTime},</if>
+            <if test ='null != updateTime'>update_time = #{updateTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_dealer_institutions
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_dealer_institutions
+        where 1=1
+        <if test="keyword != null and keyword != ''">
+            and (dealer_number = #{keyword} or dealer_name like CONCAT('%',#{keyword},'%') or client_version_number like CONCAT('%',#{keyword},'%'))
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        order by dealer_number asc
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM funds_dealer_institutions
+    </select>
+
+
+</mapper>

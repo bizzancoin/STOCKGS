@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.FundsSettingMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.FundsSetting" >
+        <result column="id" property="id" />
+        <result column="margin_min" property="marginMin" />
+        <result column="margin_max" property="marginMax" />
+        <result column="interest_free_lever" property="interestFreeLever" />
+        <result column="interest_free_days" property="interestFreeDays" />
+        <result column="interest_free_profit" property="interestFreeProfit" />
+        <result column="interest_free_warning" property="interestFreeWarning" />
+        <result column="interest_free_unwind" property="interestFreeUnwind" />
+        <result column="days_warning" property="daysWarning" />
+        <result column="days_unwind" property="daysUnwind" />
+        <result column="weeks_warning" property="weeksWarning" />
+        <result column="weeks_unwind" property="weeksUnwind" />
+        <result column="month_warning" property="monthWarning" />
+        <result column="month_unwind" property="monthUnwind" />
+        <result column="days_use_period" property="daysUsePeriod" />
+        <result column="weeks_use_period" property="weeksUsePeriod" />
+        <result column="month_use_period" property="monthUsePeriod" />
+        <result column="early_termination_interest" property="earlyTerminationInterest" />
+        <result column="trading_commission_rate" property="tradingCommissionRate" />
+        <result column="stamp_duty_rate" property="stampDutyRate" />
+        <result column="profit_sharing_ratio" property="profitSharingRatio" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                margin_min,
+                margin_max,
+                interest_free_lever,
+                interest_free_days,
+                interest_free_profit,
+                interest_free_warning,
+                interest_free_unwind,
+                days_warning,
+                days_unwind,
+                weeks_warning,
+                weeks_unwind,
+                month_warning,
+                month_unwind,
+                days_use_period,
+                weeks_use_period,
+                month_use_period,
+                early_termination_interest,
+                trading_commission_rate,
+                stamp_duty_rate,
+                profit_sharing_ratio
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.FundsSetting">
+        INSERT INTO funds_setting
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != marginMin'>
+                margin_min,
+            </if>
+            <if test ='null != marginMax'>
+                margin_max,
+            </if>
+            <if test ='null != interestFreeLever'>
+                interest_free_lever,
+            </if>
+            <if test ='null != interestFreeDays'>
+                interest_free_days,
+            </if>
+            <if test ='null != interestFreeProfit'>
+                interest_free_profit,
+            </if>
+            <if test ='null != interestFreeWarning'>
+                interest_free_warning,
+            </if>
+            <if test ='null != interestFreeUnwind'>
+                interest_free_unwind,
+            </if>
+            <if test ='null != daysWarning'>
+                days_warning,
+            </if>
+            <if test ='null != daysUnwind'>
+                days_unwind,
+            </if>
+            <if test ='null != weeksWarning'>
+                weeks_warning,
+            </if>
+            <if test ='null != weeksUnwind'>
+                weeks_unwind,
+            </if>
+            <if test ='null != monthWarning'>
+                month_warning,
+            </if>
+            <if test ='null != monthUnwind'>
+                month_unwind,
+            </if>
+            <if test ='null != daysUsePeriod'>
+                days_use_period,
+            </if>
+            <if test ='null != weeksUsePeriod'>
+                weeks_use_period,
+            </if>
+            <if test ='null != monthUsePeriod'>
+                month_use_period,
+            </if>
+            <if test ='null != earlyTerminationInterest'>
+                early_termination_interest,
+            </if>
+            <if test ='null != tradingCommissionRate'>
+                trading_commission_rate,
+            </if>
+            <if test ='null != stampDutyRate'>
+                stamp_duty_rate,
+            </if>
+            <if test ='null != profitSharingRatio'>
+                profit_sharing_ratio
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != marginMin'>
+                #{marginMin},
+            </if>
+            <if test ='null != marginMax'>
+                #{marginMax},
+            </if>
+            <if test ='null != interestFreeLever'>
+                #{interestFreeLever},
+            </if>
+            <if test ='null != interestFreeDays'>
+                #{interestFreeDays},
+            </if>
+            <if test ='null != interestFreeProfit'>
+                #{interestFreeProfit},
+            </if>
+            <if test ='null != interestFreeWarning'>
+                #{interestFreeWarning},
+            </if>
+            <if test ='null != interestFreeUnwind'>
+                #{interestFreeUnwind},
+            </if>
+            <if test ='null != daysWarning'>
+                #{daysWarning},
+            </if>
+            <if test ='null != daysUnwind'>
+                #{daysUnwind},
+            </if>
+            <if test ='null != weeksWarning'>
+                #{weeksWarning},
+            </if>
+            <if test ='null != weeksUnwind'>
+                #{weeksUnwind},
+            </if>
+            <if test ='null != monthWarning'>
+                #{monthWarning},
+            </if>
+            <if test ='null != monthUnwind'>
+                #{monthUnwind},
+            </if>
+            <if test ='null != daysUsePeriod'>
+                #{daysUsePeriod},
+            </if>
+            <if test ='null != weeksUsePeriod'>
+                #{weeksUsePeriod},
+            </if>
+            <if test ='null != monthUsePeriod'>
+                #{monthUsePeriod},
+            </if>
+            <if test ='null != earlyTerminationInterest'>
+                #{earlyTerminationInterest},
+            </if>
+            <if test ='null != tradingCommissionRate'>
+                #{tradingCommissionRate},
+            </if>
+            <if test ='null != stampDutyRate'>
+                #{stampDutyRate},
+            </if>
+            <if test ='null != profitSharingRatio'>
+                #{profitSharingRatio}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM funds_setting
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.FundsSetting">
+        UPDATE funds_setting
+        <set>
+            <if test ='null != marginMin'>margin_min = #{marginMin},</if>
+            <if test ='null != marginMax'>margin_max = #{marginMax},</if>
+            <if test ='null != interestFreeLever'>interest_free_lever = #{interestFreeLever},</if>
+            <if test ='null != interestFreeDays'>interest_free_days = #{interestFreeDays},</if>
+            <if test ='null != interestFreeProfit'>interest_free_profit = #{interestFreeProfit},</if>
+            <if test ='null != interestFreeWarning'>interest_free_warning = #{interestFreeWarning},</if>
+            <if test ='null != interestFreeUnwind'>interest_free_unwind = #{interestFreeUnwind},</if>
+            <if test ='null != daysWarning'>days_warning = #{daysWarning},</if>
+            <if test ='null != daysUnwind'>days_unwind = #{daysUnwind},</if>
+            <if test ='null != weeksWarning'>weeks_warning = #{weeksWarning},</if>
+            <if test ='null != weeksUnwind'>weeks_unwind = #{weeksUnwind},</if>
+            <if test ='null != monthWarning'>month_warning = #{monthWarning},</if>
+            <if test ='null != monthUnwind'>month_unwind = #{monthUnwind},</if>
+            <if test ='null != daysUsePeriod'>days_use_period = #{daysUsePeriod},</if>
+            <if test ='null != weeksUsePeriod'>weeks_use_period = #{weeksUsePeriod},</if>
+            <if test ='null != monthUsePeriod'>month_use_period = #{monthUsePeriod},</if>
+            <if test ='null != earlyTerminationInterest'>early_termination_interest = #{earlyTerminationInterest},</if>
+            <if test ='null != tradingCommissionRate'>trading_commission_rate = #{tradingCommissionRate},</if>
+            <if test ='null != stampDutyRate'>stamp_duty_rate = #{stampDutyRate},</if>
+            <if test ='null != profitSharingRatio'>profit_sharing_ratio = #{profitSharingRatio}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_setting
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_setting
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM funds_setting
+    </select>
+
+    <select id="findAllFundsSetting" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM funds_setting
+    </select>
+
+</mapper>

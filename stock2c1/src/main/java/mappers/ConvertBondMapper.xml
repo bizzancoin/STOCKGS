@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.ConvertBondMapper">
+  <resultMap id="BaseResultMap" type="com.xc.pojo.ConvertBond">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="bond_buy_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="bond_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="bond_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="bond_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="stock_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="apply_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pub_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="list_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="surplus" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="apply_limit" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, bond_buy_code, bond_name, bond_type, bond_code, stock_code, price, apply_date, 
+    pub_date, list_date, surplus, apply_limit, status, create_time
+  </sql>
+  <select id="selectByExample" parameterType="com.xc.pojo.ConvertBondExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from convert_bond
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from convert_bond
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from convert_bond
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xc.pojo.ConvertBondExample">
+    delete from convert_bond
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.ConvertBond">
+    insert into convert_bond (id, bond_buy_code, bond_name, 
+      bond_type, bond_code, stock_code, 
+      price, apply_date, pub_date, 
+      list_date, surplus, apply_limit, 
+      status, create_time)
+    values (#{id,jdbcType=INTEGER}, #{bondBuyCode,jdbcType=VARCHAR}, #{bondName,jdbcType=VARCHAR}, 
+      #{bondType,jdbcType=VARCHAR}, #{bondCode,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{applyDate,jdbcType=TIMESTAMP}, #{pubDate,jdbcType=TIMESTAMP}, 
+      #{listDate,jdbcType=TIMESTAMP}, #{surplus,jdbcType=INTEGER}, #{applyLimit,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.ConvertBond">
+    insert into convert_bond
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bondBuyCode != null">
+        bond_buy_code,
+      </if>
+      <if test="bondName != null">
+        bond_name,
+      </if>
+      <if test="bondType != null">
+        bond_type,
+      </if>
+      <if test="bondCode != null">
+        bond_code,
+      </if>
+      <if test="stockCode != null">
+        stock_code,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="applyDate != null">
+        apply_date,
+      </if>
+      <if test="pubDate != null">
+        pub_date,
+      </if>
+      <if test="listDate != null">
+        list_date,
+      </if>
+      <if test="surplus != null">
+        surplus,
+      </if>
+      <if test="applyLimit != null">
+        apply_limit,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bondBuyCode != null">
+        #{bondBuyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bondName != null">
+        #{bondName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondType != null">
+        #{bondType,jdbcType=VARCHAR},
+      </if>
+      <if test="bondCode != null">
+        #{bondCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null">
+        #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubDate != null">
+        #{pubDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listDate != null">
+        #{listDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surplus != null">
+        #{surplus,jdbcType=INTEGER},
+      </if>
+      <if test="applyLimit != null">
+        #{applyLimit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xc.pojo.ConvertBondExample" resultType="java.lang.Integer">
+    select count(*) from convert_bond
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update convert_bond
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.bondBuyCode != null">
+        bond_buy_code = #{record.bondBuyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bondName != null">
+        bond_name = #{record.bondName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bondType != null">
+        bond_type = #{record.bondType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bondCode != null">
+        bond_code = #{record.bondCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockCode != null">
+        stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.applyDate != null">
+        apply_date = #{record.applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pubDate != null">
+        pub_date = #{record.pubDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.listDate != null">
+        list_date = #{record.listDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.surplus != null">
+        surplus = #{record.surplus,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyLimit != null">
+        apply_limit = #{record.applyLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update convert_bond
+    set id = #{record.id,jdbcType=INTEGER},
+      bond_buy_code = #{record.bondBuyCode,jdbcType=VARCHAR},
+      bond_name = #{record.bondName,jdbcType=VARCHAR},
+      bond_type = #{record.bondType,jdbcType=VARCHAR},
+      bond_code = #{record.bondCode,jdbcType=VARCHAR},
+      stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      apply_date = #{record.applyDate,jdbcType=TIMESTAMP},
+      pub_date = #{record.pubDate,jdbcType=TIMESTAMP},
+      list_date = #{record.listDate,jdbcType=TIMESTAMP},
+      surplus = #{record.surplus,jdbcType=INTEGER},
+      apply_limit = #{record.applyLimit,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.ConvertBond">
+    update convert_bond
+    <set>
+      <if test="bondBuyCode != null">
+        bond_buy_code = #{bondBuyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bondName != null">
+        bond_name = #{bondName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondType != null">
+        bond_type = #{bondType,jdbcType=VARCHAR},
+      </if>
+      <if test="bondCode != null">
+        bond_code = #{bondCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null">
+        stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null">
+        apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubDate != null">
+        pub_date = #{pubDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listDate != null">
+        list_date = #{listDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surplus != null">
+        surplus = #{surplus,jdbcType=INTEGER},
+      </if>
+      <if test="applyLimit != null">
+        apply_limit = #{applyLimit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.ConvertBond">
+    update convert_bond
+    set bond_buy_code = #{bondBuyCode,jdbcType=VARCHAR},
+      bond_name = #{bondName,jdbcType=VARCHAR},
+      bond_type = #{bondType,jdbcType=VARCHAR},
+      bond_code = #{bondCode,jdbcType=VARCHAR},
+      stock_code = #{stockCode,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      pub_date = #{pubDate,jdbcType=TIMESTAMP},
+      list_date = #{listDate,jdbcType=TIMESTAMP},
+      surplus = #{surplus,jdbcType=INTEGER},
+      apply_limit = #{applyLimit,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

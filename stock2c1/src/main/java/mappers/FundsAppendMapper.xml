@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.FundsAppendMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.FundsAppend" >
+        <result column="id" property="id" />
+        <result column="append_type" property="appendType" />
+        <result column="apply_id" property="applyId" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="user_phone" property="userPhone" />
+        <result column="funds_type" property="fundsType" />
+        <result column="margin" property="margin" />
+        <result column="funds_amount" property="fundsAmount" />
+        <result column="traders_cycle" property="tradersCycle" />
+        <result column="lever" property="lever" />
+        <result column="manage_fee" property="manageFee" />
+        <result column="total_trading_amount" property="totalTradingAmount" />
+        <result column="append_cycle" property="appendCycle" />
+        <result column="append_service_fee" property="appendServiceFee" />
+        <result column="append_margin" property="appendMargin" />
+        <result column="status" property="status" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="audit_time" property="auditTime" />
+        <result column="end_time" property="endTime" />
+        <result column="line_warning" property="lineWarning" />
+        <result column="line_unwind" property="lineUnwind" />
+        <result column="ratio_warning" property="ratioWarning" />
+        <result column="ratio_unwind" property="ratioUnwind" />
+        <result column="pay_amount" property="payAmount" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                append_type,
+                apply_id,
+                user_id,
+                user_name,
+                user_phone,
+                funds_type,
+                margin,
+                funds_amount,
+                traders_cycle,
+                lever,
+                manage_fee,
+                total_trading_amount,
+                append_cycle,
+                append_service_fee,
+                append_margin,
+                status,
+                add_time,
+                update_time,
+                audit_time,
+                end_time,
+                line_warning,
+                line_unwind,
+                ratio_warning,
+                ratio_unwind,
+                pay_amount
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.FundsAppend">
+        INSERT INTO funds_append
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != appendType'>
+                append_type,
+            </if>
+            <if test ='null != applyId'>
+                apply_id,
+            </if>
+            <if test ='null != userId'>
+                user_id,
+            </if>
+            <if test ='null != userName'>
+                user_name,
+            </if>
+            <if test ='null != userPhone'>
+                user_phone,
+            </if>
+            <if test ='null != fundsType'>
+                funds_type,
+            </if>
+            <if test ='null != margin'>
+                margin,
+            </if>
+            <if test ='null != fundsAmount'>
+                funds_amount,
+            </if>
+            <if test ='null != tradersCycle'>
+                traders_cycle,
+            </if>
+            <if test ='null != lever'>
+                lever,
+            </if>
+            <if test ='null != manageFee'>
+                manage_fee,
+            </if>
+            <if test ='null != totalTradingAmount'>
+                total_trading_amount,
+            </if>
+            <if test ='null != appendCycle'>
+                append_cycle,
+            </if>
+            <if test ='null != appendServiceFee'>
+                append_service_fee,
+            </if>
+            <if test ='null != appendMargin'>
+                append_margin,
+            </if>
+            <if test ='null != status'>
+                status,
+            </if>
+            <if test ='null != addTime'>
+                add_time,
+            </if>
+            <if test ='null != updateTime'>
+                update_time,
+            </if>
+            <if test ='null != auditTime'>
+                audit_time,
+            </if>
+            <if test ='null != endTime'>
+                end_time,
+            </if>
+            <if test ='null != lineWarning'>
+                line_warning,
+            </if>
+            <if test ='null != lineUnwind'>
+                line_unwind,
+            </if>
+            <if test ='null != ratioWarning'>
+                ratio_warning,
+            </if>
+            <if test ='null != ratioUnwind'>
+                ratio_unwind,
+            </if>
+            <if test ='null != payAmount'>
+                pay_amount
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != appendType'>
+                #{appendType},
+            </if>
+            <if test ='null != applyId'>
+                #{applyId},
+            </if>
+            <if test ='null != userId'>
+                #{userId},
+            </if>
+            <if test ='null != userName'>
+                #{userName},
+            </if>
+            <if test ='null != userPhone'>
+                #{userPhone},
+            </if>
+            <if test ='null != fundsType'>
+                #{fundsType},
+            </if>
+            <if test ='null != margin'>
+                #{margin},
+            </if>
+            <if test ='null != fundsAmount'>
+                #{fundsAmount},
+            </if>
+            <if test ='null != tradersCycle'>
+                #{tradersCycle},
+            </if>
+            <if test ='null != lever'>
+                #{lever},
+            </if>
+            <if test ='null != manageFee'>
+                #{manageFee},
+            </if>
+            <if test ='null != totalTradingAmount'>
+                #{totalTradingAmount},
+            </if>
+            <if test ='null != appendCycle'>
+                #{appendCycle},
+            </if>
+            <if test ='null != appendServiceFee'>
+                #{appendServiceFee},
+            </if>
+            <if test ='null != appendMargin'>
+                #{appendMargin},
+            </if>
+            <if test ='null != status'>
+                #{status},
+            </if>
+            <if test ='null != addTime'>
+                #{addTime},
+            </if>
+            <if test ='null != updateTime'>
+                #{updateTime},
+            </if>
+            <if test ='null != auditTime'>
+                #{auditTime},
+            </if>
+            <if test ='null != endTime'>
+                #{endTime},
+            </if>
+            <if test ='null != lineWarning'>
+                #{lineWarning},
+            </if>
+            <if test ='null != lineUnwind'>
+                #{lineUnwind},
+            </if>
+            <if test ='null != ratioWarning'>
+                #{ratioWarning},
+            </if>
+            <if test ='null != ratioUnwind'>
+                #{ratioUnwind},
+            </if>
+            <if test ='null != payAmount'>
+                #{payAmount}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM funds_append
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.FundsAppend">
+        UPDATE funds_append
+        <set>
+            <if test ='null != appendType'>append_type = #{appendType},</if>
+            <if test ='null != applyId'>apply_id = #{applyId},</if>
+            <if test ='null != userId'>user_id = #{userId},</if>
+            <if test ='null != userName'>user_name = #{userName},</if>
+            <if test ='null != userPhone'>user_phone = #{userPhone},</if>
+            <if test ='null != fundsType'>funds_type = #{fundsType},</if>
+            <if test ='null != margin'>margin = #{margin},</if>
+            <if test ='null != fundsAmount'>funds_amount = #{fundsAmount},</if>
+            <if test ='null != tradersCycle'>traders_cycle = #{tradersCycle},</if>
+            <if test ='null != lever'>lever = #{lever},</if>
+            <if test ='null != manageFee'>manage_fee = #{manageFee},</if>
+            <if test ='null != totalTradingAmount'>total_trading_amount = #{totalTradingAmount},</if>
+            <if test ='null != appendCycle'>append_cycle = #{appendCycle},</if>
+            <if test ='null != appendServiceFee'>append_service_fee = #{appendServiceFee},</if>
+            <if test ='null != appendMargin'>append_margin = #{appendMargin},</if>
+            <if test ='null != status'>status = #{status},</if>
+            <if test ='null != addTime'>add_time = #{addTime},</if>
+            <if test ='null != updateTime'>update_time = #{updateTime},</if>
+            <if test ='null != auditTime'>audit_time = #{auditTime},</if>
+            <if test ='null != endTime'>end_time = #{endTime},</if>
+            <if test ='null != lineWarning'>line_warning = #{lineWarning},</if>
+            <if test ='null != lineUnwind'>line_unwind = #{lineUnwind},</if>
+            <if test ='null != ratioWarning'>ratio_warning = #{ratioWarning},</if>
+            <if test ='null != ratioUnwind'>ratio_unwind = #{ratioUnwind},</if>
+            <if test ='null != payAmount'>pay_amount = #{payAmount}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_append
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_append
+        where 1=1
+        <if test="keyword != null and keyword != ''">
+            and (user_name like CONCAT('%',#{keyword},'%') or user_phone like CONCAT('%',#{keyword},'%'))
+        </if>
+        <if test="status != null ">
+            and status = #{status}
+        </if>
+        <if test="userId != null ">
+            and user_id = #{userId}
+        </if>
+        <if test="appendType != null ">
+            and append_type = #{appendType}
+        </if>
+        order by id desc
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM funds_append
+    </select>
+
+    <!--根据子账户查询是否申请终止-->
+    <select id="isAppendEnd" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM funds_append
+        where apply_id = #{applyId} and append_type = 4 and status != 2
+    </select>
+
+</mapper>

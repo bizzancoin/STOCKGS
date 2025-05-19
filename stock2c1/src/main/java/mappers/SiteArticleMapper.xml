@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.SiteArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.SiteArticle" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="art_title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="art_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="art_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="author" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="hit_times" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_show" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="art_summary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="art_cnt" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="spider_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="source_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="views" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, art_title, art_type, art_img, author, hit_times, is_show, add_time, art_summary, 
+    art_cnt, spider_url,source_id,views
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from site_article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site_article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.SiteArticle" >
+    insert into site_article (id, art_title, art_type, 
+      art_img, author, hit_times, 
+      is_show, add_time, art_summary, 
+      art_cnt, spider_url,source_id,views)
+    values (#{id,jdbcType=INTEGER}, #{artTitle,jdbcType=VARCHAR}, #{artType,jdbcType=VARCHAR}, 
+      #{artImg,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{hitTimes,jdbcType=INTEGER}, 
+      #{isShow,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{artSummary,jdbcType=VARCHAR}, 
+      #{artCnt,jdbcType=VARCHAR}, #{spiderUrl,jdbcType=VARCHAR}, #{sourceId,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.SiteArticle" >
+    insert into site_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="artTitle != null" >
+        art_title,
+      </if>
+      <if test="artType != null" >
+        art_type,
+      </if>
+      <if test="artImg != null" >
+        art_img,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="hitTimes != null" >
+        hit_times,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="artSummary != null" >
+        art_summary,
+      </if>
+      <if test="artCnt != null" >
+        art_cnt,
+      </if>
+      <if test="spiderUrl != null" >
+        spider_url,
+      </if>
+      <if test="sourceId != null" >
+        source_id,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="artTitle != null" >
+        #{artTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="artType != null" >
+        #{artType,jdbcType=VARCHAR},
+      </if>
+      <if test="artImg != null" >
+        #{artImg,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="hitTimes != null" >
+        #{hitTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="artSummary != null" >
+        #{artSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="artCnt != null" >
+        #{artCnt,jdbcType=VARCHAR},
+      </if>
+      <if test="spiderUrl != null" >
+        #{spiderUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.SiteArticle" >
+    update site_article
+    <set >
+      <if test="artTitle != null" >
+        art_title = #{artTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="artType != null" >
+        art_type = #{artType,jdbcType=VARCHAR},
+      </if>
+      <if test="artImg != null" >
+        art_img = #{artImg,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="hitTimes != null" >
+        hit_times = #{hitTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="artSummary != null" >
+        art_summary = #{artSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="artCnt != null" >
+        art_cnt = #{artCnt,jdbcType=VARCHAR},
+      </if>
+      <if test="spiderUrl != null" >
+        spider_url = #{spiderUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceId != null" >
+        source_id = #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.SiteArticle" >
+    update site_article
+    set art_title = #{artTitle,jdbcType=VARCHAR},
+      art_type = #{artType,jdbcType=VARCHAR},
+      art_img = #{artImg,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      hit_times = #{hitTimes,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      art_summary = #{artSummary,jdbcType=VARCHAR},
+      art_cnt = #{artCnt,jdbcType=VARCHAR},
+      spider_url = #{spiderUrl,jdbcType=VARCHAR},
+      source_id = #{sourceId,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+
+  <select id="listByAdmin" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_article
+    <where>
+      <if test="artTitle != null and artTitle != '' ">
+        and art_title like CONCAT('%','${artTitle}','%')
+      </if>
+      <if test="artType != null and artType != '' ">
+        and art_type like CONCAT('%','${artType}','%')
+      </if>
+    </where>
+  </select>
+
+
+  <select id="list" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_article
+    <where>
+      is_show = 0
+      <if test="artTitle != null and artTitle != '' ">
+        and art_title like CONCAT('%','${artTitle}','%')
+      </if>
+      <if test="artType != null and artType != '' ">
+        and art_type like CONCAT('%','${artType}','%')
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+  <!--top最新公告-->
+  <select id="getTopArtList" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_article
+    <where>
+      is_show = 0
+    </where>
+    order by id desc
+    limit #{pageSize}
+  </select>
+
+  <!--根据来源id查询公告数-->
+  <select id="getArtBySourceIdCount" resultType="java.lang.Integer">
+      SELECT count(1)
+      FROM site_article
+      WHERE source_id = #{sourceId}
+  </select>
+
+
+</mapper>
+

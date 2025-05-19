@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.UserCashDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.UserCashDetail" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="agent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="agent_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="position_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="de_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="de_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="de_summary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="add_ip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="add_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_read" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, agent_id, agent_name, user_id, user_name, position_id, de_type, de_amt, de_summary, 
+    add_time, add_ip, add_address, is_read
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_cash_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_cash_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.UserCashDetail" >
+    insert into user_cash_detail (id, agent_id, agent_name, 
+      user_id, user_name, position_id, 
+      de_type, de_amt, de_summary, 
+      add_time, add_ip, add_address, 
+      is_read)
+    values (#{id,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{agentName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{positionId,jdbcType=INTEGER}, 
+      #{deType,jdbcType=VARCHAR}, #{deAmt,jdbcType=DECIMAL}, #{deSummary,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{addIp,jdbcType=VARCHAR}, #{addAddress,jdbcType=VARCHAR}, 
+      #{isRead,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.UserCashDetail" >
+    insert into user_cash_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="agentName != null" >
+        agent_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="positionId != null" >
+        position_id,
+      </if>
+      <if test="deType != null" >
+        de_type,
+      </if>
+      <if test="deAmt != null" >
+        de_amt,
+      </if>
+      <if test="deSummary != null" >
+        de_summary,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addIp != null" >
+        add_ip,
+      </if>
+      <if test="addAddress != null" >
+        add_address,
+      </if>
+      <if test="isRead != null" >
+        is_read,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="agentName != null" >
+        #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionId != null" >
+        #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="deType != null" >
+        #{deType,jdbcType=VARCHAR},
+      </if>
+      <if test="deAmt != null" >
+        #{deAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="deSummary != null" >
+        #{deSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addIp != null" >
+        #{addIp,jdbcType=VARCHAR},
+      </if>
+      <if test="addAddress != null" >
+        #{addAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        #{isRead,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.UserCashDetail" >
+    update user_cash_detail
+    <set >
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="agentName != null" >
+        agent_name = #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionId != null" >
+        position_id = #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="deType != null" >
+        de_type = #{deType,jdbcType=VARCHAR},
+      </if>
+      <if test="deAmt != null" >
+        de_amt = #{deAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="deSummary != null" >
+        de_summary = #{deSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addIp != null" >
+        add_ip = #{addIp,jdbcType=VARCHAR},
+      </if>
+      <if test="addAddress != null" >
+        add_address = #{addAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        is_read = #{isRead,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.UserCashDetail" >
+    update user_cash_detail
+    set agent_id = #{agentId,jdbcType=INTEGER},
+      agent_name = #{agentName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      position_id = #{positionId,jdbcType=INTEGER},
+      de_type = #{deType,jdbcType=VARCHAR},
+      de_amt = #{deAmt,jdbcType=DECIMAL},
+      de_summary = #{deSummary,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_ip = #{addIp,jdbcType=VARCHAR},
+      add_address = #{addAddress,jdbcType=VARCHAR},
+      is_read = #{isRead,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="findUserCashDetailList" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_cash_detail
+    <where>
+      user_id = #{uid}
+      <if test="positionId != null and positionId != '' ">
+        and position_id = #{positionId}
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+  <select id="listByAgent" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_cash_detail
+    <where>
+      agent_id = #{searchId}
+      <if test="userId != null and userId != '' ">
+        and user_id = #{userId}
+      </if>
+      <if test="positionId != null and positionId != '' ">
+        and position_id = #{positionId}
+      </if>
+      <if test="userName != null and userName != '' ">
+        and user_name like CONCAT('%','${userName}','%')
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+
+
+
+  <select id="listByAdmin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_cash_detail
+    <where>
+      <if test="agentId != null and agentId != '' ">
+        and agent_id = #{agentId}
+      </if>
+      <if test="userId != null and userId != '' ">
+        and user_id = #{userId}
+      </if>
+      <if test="positionId != null and positionId != '' ">
+        and position_id = #{positionId}
+      </if>
+      <if test="userName != null and userName != '' ">
+        and user_name like CONCAT('%','${userName}','%')
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+
+  <delete id="deleteByUserId" parameterType="integer">
+    DELETE FROM user_cash_detail WHERE user_id = #{userId}
+  </delete>
+
+
+
+
+
+</mapper>

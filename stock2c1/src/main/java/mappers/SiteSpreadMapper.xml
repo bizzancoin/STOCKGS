@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.SiteSpreadMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.SiteSpread" >
+        <result column="id" property="id" />
+        <result column="type_name" property="typeName" />
+        <result column="unit" property="unit" />
+        <result column="start_interval" property="startInterval" />
+        <result column="end_interval" property="endInterval" />
+        <result column="spread_rate" property="spreadRate" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                type_name,
+                unit,
+                start_interval,
+                end_interval,
+                spread_rate,
+                add_time,
+                update_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.SiteSpread">
+        INSERT INTO site_spread
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != typeName'>
+                type_name,
+            </if>
+            <if test ='null != unit'>
+                unit,
+            </if>
+            <if test ='null != startInterval'>
+                start_interval,
+            </if>
+            <if test ='null != endInterval'>
+                end_interval,
+            </if>
+            <if test ='null != spreadRate'>
+                spread_rate,
+            </if>
+            add_time,
+            <if test ='null != updateTime'>
+                update_time
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != typeName'>
+                #{typeName},
+            </if>
+            <if test ='null != unit'>
+                #{unit},
+            </if>
+            <if test ='null != startInterval'>
+                #{startInterval},
+            </if>
+            <if test ='null != endInterval'>
+                #{endInterval},
+            </if>
+            <if test ='null != spreadRate'>
+                #{spreadRate},
+            </if>
+            now(),
+            <if test ='null != updateTime'>
+                #{updateTime}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM site_spread
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.SiteSpread">
+        UPDATE site_spread
+        <set>
+            <if test ='null != typeName'>type_name = #{typeName},</if>
+            <if test ='null != unit'>unit = #{unit},</if>
+            <if test ='null != startInterval'>start_interval = #{startInterval},</if>
+            <if test ='null != endInterval'>end_interval = #{endInterval},</if>
+            <if test ='null != spreadRate'>spread_rate = #{spreadRate},</if>
+            <if test ='null != addTime'>add_time = #{addTime},</if>
+            update_time = now()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM site_spread
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM site_spread
+        where 1=1
+        <if test="null != typeName and typeName != ''">
+            and type_name = #{typeName}
+        </if>
+        order by id asc,type_name asc
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM site_spread
+    </select>
+
+    <!--查询点差费率-->
+    <select id="findSpreadRateOne" resultMap="BaseResultMap">
+        SELECT * from (
+            SELECT type_name,spread_rate FROM `site_spread` WHERE type_name='涨跌幅' and start_interval &lt;=#{applies} and end_interval>#{applies}
+            UNION ALL
+            SELECT type_name,spread_rate FROM `site_spread` WHERE type_name='成交额' and start_interval &lt;=#{turnover} and end_interval>#{turnover}
+            UNION ALL
+            SELECT type_name,spread_rate FROM `site_spread` WHERE type_name='开头收取' and unit=left(#{code}, 3)
+            UNION ALL
+            SELECT type_name,spread_rate FROM `site_spread` WHERE type_name='低于收取' and start_interval &lt;=#{unitprice} and end_interval>#{unitprice}
+            UNION ALL
+            SELECT '股票点差' type_name,spread_rate FROM stock WHERE stock_code=#{code} and spread_rate>0
+        ) k ORDER BY k.spread_rate desc
+        limit 1
+    </select>
+
+</mapper>

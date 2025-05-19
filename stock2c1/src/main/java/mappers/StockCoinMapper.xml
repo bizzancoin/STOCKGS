@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.StockCoinMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.StockCoin" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="coin_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="coin_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="coin_gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dynamic_rate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="default_rate" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="is_use" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="t_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, coin_name, coin_code, coin_gid, dynamic_rate, default_rate, is_use, add_time, 
+    t_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stock_coin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stock_coin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.StockCoin" >
+    insert into stock_coin (id, coin_name, coin_code, 
+      coin_gid, dynamic_rate, default_rate, 
+      is_use, add_time, t_desc
+      )
+    values (#{id,jdbcType=INTEGER}, #{coinName,jdbcType=VARCHAR}, #{coinCode,jdbcType=VARCHAR}, 
+      #{coinGid,jdbcType=VARCHAR}, #{dynamicRate,jdbcType=INTEGER}, #{defaultRate,jdbcType=DECIMAL}, 
+      #{isUse,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{tDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.StockCoin" >
+    insert into stock_coin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="coinName != null" >
+        coin_name,
+      </if>
+      <if test="coinCode != null" >
+        coin_code,
+      </if>
+      <if test="coinGid != null" >
+        coin_gid,
+      </if>
+      <if test="dynamicRate != null" >
+        dynamic_rate,
+      </if>
+      <if test="defaultRate != null" >
+        default_rate,
+      </if>
+      <if test="isUse != null" >
+        is_use,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="tDesc != null" >
+        t_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coinName != null" >
+        #{coinName,jdbcType=VARCHAR},
+      </if>
+      <if test="coinCode != null" >
+        #{coinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coinGid != null" >
+        #{coinGid,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicRate != null" >
+        #{dynamicRate,jdbcType=INTEGER},
+      </if>
+      <if test="defaultRate != null" >
+        #{defaultRate,jdbcType=DECIMAL},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDesc != null" >
+        #{tDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.StockCoin" >
+    update stock_coin
+    <set >
+      <if test="coinName != null" >
+        coin_name = #{coinName,jdbcType=VARCHAR},
+      </if>
+      <if test="coinCode != null" >
+        coin_code = #{coinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coinGid != null" >
+        coin_gid = #{coinGid,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicRate != null" >
+        dynamic_rate = #{dynamicRate,jdbcType=INTEGER},
+      </if>
+      <if test="defaultRate != null" >
+        default_rate = #{defaultRate,jdbcType=DECIMAL},
+      </if>
+      <if test="isUse != null" >
+        is_use = #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDesc != null" >
+        t_desc = #{tDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.StockCoin" >
+    update stock_coin
+    set coin_name = #{coinName,jdbcType=VARCHAR},
+      coin_code = #{coinCode,jdbcType=VARCHAR},
+      coin_gid = #{coinGid,jdbcType=VARCHAR},
+      dynamic_rate = #{dynamicRate,jdbcType=INTEGER},
+      default_rate = #{defaultRate,jdbcType=DECIMAL},
+      is_use = #{isUse,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      t_desc = #{tDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="listByAdmin" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_coin
+    <where>
+      <if test="coinName != null and coinName != '' ">
+        and coin_name like CONCAT('%','${coinName}','%')
+      </if>
+      <if test="coinCode != null and coinCode != '' ">
+        and coin_code like CONCAT('%','${coinCode}','%')
+      </if>
+    </where>
+  </select>
+
+
+
+  <select id="selectCoinByName" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_coin
+    WHERE coin_name = #{coinName}
+  </select>
+
+  <select id="selectCoinByCode" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_coin
+    WHERE coin_code = #{coinCode}
+  </select>
+
+  <select id="selectCoinByGid" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_coin
+    WHERE coin_gid = #{coinGid}
+  </select>
+
+
+  <select id="getSelectCoin" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM stock_coin
+    WHERE is_use = 1
+  </select>
+
+
+</mapper>
+
+
+

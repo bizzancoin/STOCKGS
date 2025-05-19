@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.AgentDistributionUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.AgentDistributionUser" >
+        <result column="id" property="id" />
+        <result column="agent_id" property="agentId" />
+        <result column="parent_id" property="parentId" />
+        <result column="parent_level" property="parentLevel" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        agent_id,
+        parent_id,
+        parent_level,
+        add_time,
+        update_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.AgentDistributionUser">
+        INSERT INTO agent_distribution_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != agentId'>
+                agent_id,
+            </if>
+            <if test ='null != parentId'>
+                parent_id,
+            </if>
+            <if test ='null != parentLevel'>
+                parent_level,
+            </if>
+            <if test ='null != addTime'>
+                add_time,
+            </if>
+            <if test ='null != updateTime'>
+                update_time
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != agentId'>
+                #{agentId},
+            </if>
+            <if test ='null != parentId'>
+                #{parentId},
+            </if>
+            <if test ='null != parentLevel'>
+                #{parentLevel},
+            </if>
+            <if test ='null != addTime'>
+                #{addTime},
+            </if>
+            <if test ='null != updateTime'>
+                #{updateTime}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.xc.pojo.AgentDistributionUser">
+        UPDATE agent_distribution_user
+        <set>
+            <if test ='null != agentId'>agent_id = #{agentId},</if>
+            <if test ='null != parentId'>parent_id = #{parentId},</if>
+            <if test ='null != parentLevel'>parent_level = #{parentLevel},</if>
+            <if test ='null != addTime'>add_time = #{addTime},</if>
+            <if test ='null != updateTime'>update_time = #{updateTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM agent_distribution_user
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM agent_distribution_user
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM agent_distribution_user
+    </select>
+
+</mapper>

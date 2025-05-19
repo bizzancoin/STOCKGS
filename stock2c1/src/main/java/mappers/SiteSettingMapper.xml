@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.SiteSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.SiteSetting" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_fee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="sell_fee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="stay_fee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="duty_fee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="stay_max_days" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_min_amt" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="charge_min_amt" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_min_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="force_stop_fee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="buy_max_amt_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="force_stop_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="hight_and_low" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="with_min_amt" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="crease_max_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="buy_max_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="with_time_begin" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="with_time_end" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="trans_am_begin" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_am_end" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_pm_begin" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_pm_end" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="with_fee_single" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="with_fee_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="site_lever" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="buy_same_times" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_same_nums" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_num_times" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_num_lots" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cant_sell_times" jdbcType="INTEGER" javaType="java.lang.Integer" />
+
+      <arg column="kc_crease_max_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="stock_days" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="stock_rate" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="force_stop_remind_ratio" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="cy_crease_max_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, buy_fee, sell_fee, stay_fee, duty_fee, stay_max_days, buy_min_amt, charge_min_amt, 
+    buy_min_num, force_stop_fee, buy_max_amt_percent, force_stop_percent, hight_and_low, 
+    with_min_amt, crease_max_percent, buy_max_num, with_time_begin, with_time_end, trans_am_begin, 
+    trans_am_end, trans_pm_begin, trans_pm_end, with_fee_single, with_fee_percent, site_lever,
+    buy_same_times,buy_same_nums,buy_num_times,buy_num_lots,cant_sell_times,
+    kc_crease_max_percent,stock_days,stock_rate,force_stop_remind_ratio,cy_crease_max_percent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from site_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.SiteSetting" >
+    insert into site_setting (id, buy_fee, sell_fee, 
+      stay_fee, duty_fee, stay_max_days, 
+      buy_min_amt, charge_min_amt, buy_min_num, 
+      force_stop_fee, buy_max_amt_percent, force_stop_percent, 
+      hight_and_low, with_min_amt, crease_max_percent, 
+      buy_max_num, with_time_begin, with_time_end, 
+      trans_am_begin, trans_am_end, trans_pm_begin, 
+      trans_pm_end, with_fee_single, with_fee_percent,
+      site_lever,buy_same_times,buy_same_nums,buy_num_times,buy_num_lots,cant_sell_times,
+      kc_crease_max_percent,stock_days,stock_rate, force_stop_remind_ratio
+      )
+    values (#{id,jdbcType=INTEGER}, #{buyFee,jdbcType=DECIMAL}, #{sellFee,jdbcType=DECIMAL}, 
+      #{stayFee,jdbcType=DECIMAL}, #{dutyFee,jdbcType=DECIMAL}, #{stayMaxDays,jdbcType=INTEGER}, 
+      #{buyMinAmt,jdbcType=INTEGER}, #{chargeMinAmt,jdbcType=INTEGER}, #{buyMinNum,jdbcType=INTEGER}, 
+      #{forceStopFee,jdbcType=DECIMAL}, #{buyMaxAmtPercent,jdbcType=DECIMAL}, #{forceStopPercent,jdbcType=DECIMAL}, 
+      #{hightAndLow,jdbcType=DECIMAL}, #{withMinAmt,jdbcType=INTEGER}, #{creaseMaxPercent,jdbcType=DECIMAL}, 
+      #{buyMaxNum,jdbcType=INTEGER}, #{withTimeBegin,jdbcType=INTEGER}, #{withTimeEnd,jdbcType=INTEGER}, 
+      #{transAmBegin,jdbcType=VARCHAR}, #{transAmEnd,jdbcType=VARCHAR}, #{transPmBegin,jdbcType=VARCHAR}, 
+      #{transPmEnd,jdbcType=VARCHAR}, #{withFeeSingle,jdbcType=INTEGER}, #{withFeePercent,jdbcType=DECIMAL},
+      #{siteLever,jdbcType=VARCHAR},#{buySameTimes,jdbcType=INTEGER},#{buySameNums,jdbcType=INTEGER},
+      #{buyNumTimes,jdbcType=INTEGER},#{buyNumLots,jdbcType=INTEGER},#{cantSellTimes,jdbcType=INTEGER},
+      #{kcCreaseMaxPercent,jdbcType=DECIMAL},#{stockDays,jdbcType=INTEGER},#{stockRate,jdbcType=DECIMAL},#{forceStopRemindRatio,jdbcType=DECIMAL}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.xc.pojo.SiteSetting" >
+    insert into site_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="buyFee != null" >
+        buy_fee,
+      </if>
+      <if test="sellFee != null" >
+        sell_fee,
+      </if>
+      <if test="stayFee != null" >
+        stay_fee,
+      </if>
+      <if test="dutyFee != null" >
+        duty_fee,
+      </if>
+      <if test="stayMaxDays != null" >
+        stay_max_days,
+      </if>
+      <if test="buyMinAmt != null" >
+        buy_min_amt,
+      </if>
+      <if test="chargeMinAmt != null" >
+        charge_min_amt,
+      </if>
+      <if test="buyMinNum != null" >
+        buy_min_num,
+      </if>
+      <if test="forceStopFee != null" >
+        force_stop_fee,
+      </if>
+      <if test="buyMaxAmtPercent != null" >
+        buy_max_amt_percent,
+      </if>
+      <if test="forceStopPercent != null" >
+        force_stop_percent,
+      </if>
+      <if test="hightAndLow != null" >
+        hight_and_low,
+      </if>
+      <if test="withMinAmt != null" >
+        with_min_amt,
+      </if>
+      <if test="creaseMaxPercent != null" >
+        crease_max_percent,
+      </if>
+      <if test="buyMaxNum != null" >
+        buy_max_num,
+      </if>
+      <if test="withTimeBegin != null" >
+        with_time_begin,
+      </if>
+      <if test="withTimeEnd != null" >
+        with_time_end,
+      </if>
+      <if test="transAmBegin != null" >
+        trans_am_begin,
+      </if>
+      <if test="transAmEnd != null" >
+        trans_am_end,
+      </if>
+      <if test="transPmBegin != null" >
+        trans_pm_begin,
+      </if>
+      <if test="transPmEnd != null" >
+        trans_pm_end,
+      </if>
+      <if test="withFeeSingle != null" >
+        with_fee_single,
+      </if>
+      <if test="withFeePercent != null" >
+        with_fee_percent,
+      </if>
+      <if test="siteLever != null" >
+        site_lever,
+      </if>
+      <if test="buySameTimes != null" >
+        buy_same_times,
+      </if>
+      <if test="buySameNums != null" >
+        buy_same_nums,
+      </if>
+      <if test="buyNumTimes != null" >
+        buy_num_times,
+      </if>
+      <if test="buyNumLots != null" >
+        buy_num_lots,
+      </if>
+      <if test="cantSellTimes != null" >
+        cant_sell_times,
+      </if>
+
+      <if test="kcCreaseMaxPercent != null" >
+        kc_crease_max_percent,
+      </if>
+      <if test="stockDays != null" >
+        stock_days,
+      </if>
+      <if test="stockRate != null" >
+        stock_rate,
+      </if>
+      <if test="forceStopRemindRatio != null" >
+        force_stop_remind_ratio,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="buyFee != null" >
+        #{buyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="sellFee != null" >
+        #{sellFee,jdbcType=DECIMAL},
+      </if>
+      <if test="stayFee != null" >
+        #{stayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="dutyFee != null" >
+        #{dutyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="stayMaxDays != null" >
+        #{stayMaxDays,jdbcType=INTEGER},
+      </if>
+      <if test="buyMinAmt != null" >
+        #{buyMinAmt,jdbcType=INTEGER},
+      </if>
+      <if test="chargeMinAmt != null" >
+        #{chargeMinAmt,jdbcType=INTEGER},
+      </if>
+      <if test="buyMinNum != null" >
+        #{buyMinNum,jdbcType=INTEGER},
+      </if>
+      <if test="forceStopFee != null" >
+        #{forceStopFee,jdbcType=DECIMAL},
+      </if>
+      <if test="buyMaxAmtPercent != null" >
+        #{buyMaxAmtPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="forceStopPercent != null" >
+        #{forceStopPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="hightAndLow != null" >
+        #{hightAndLow,jdbcType=DECIMAL},
+      </if>
+      <if test="withMinAmt != null" >
+        #{withMinAmt,jdbcType=INTEGER},
+      </if>
+      <if test="creaseMaxPercent != null" >
+        #{creaseMaxPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="buyMaxNum != null" >
+        #{buyMaxNum,jdbcType=INTEGER},
+      </if>
+      <if test="withTimeBegin != null" >
+        #{withTimeBegin,jdbcType=INTEGER},
+      </if>
+      <if test="withTimeEnd != null" >
+        #{withTimeEnd,jdbcType=INTEGER},
+      </if>
+      <if test="transAmBegin != null" >
+        #{transAmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmEnd != null" >
+        #{transAmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmBegin != null" >
+        #{transPmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmEnd != null" >
+        #{transPmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="withFeeSingle != null" >
+        #{withFeeSingle,jdbcType=INTEGER},
+      </if>
+      <if test="withFeePercent != null" >
+        #{withFeePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="siteLever != null" >
+        #{siteLever,jdbcType=VARCHAR},
+      </if>
+      <if test="buySameTimes != null" >
+        #{buySameTimes,jdbcType=INTEGER},
+      </if>
+      <if test="buySameNums != null" >
+        #{buySameNums,jdbcType=INTEGER},
+      </if>
+      <if test="buyNumTimes != null" >
+        #{buyNumTimes,jdbcType=INTEGER},
+      </if>
+      <if test="buyNumLots != null" >
+        #{buyNumLots,jdbcType=INTEGER},
+      </if>
+      <if test="cantSellTimes != null" >
+        #{cantSellTimes,jdbcType=INTEGER},
+      </if>
+
+      <if test="kcCreaseMaxPercent != null" >
+        #{kcCreaseMaxPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="stockDays != null" >
+        #{stockDays,jdbcType=INTEGER},
+      </if>
+      <if test="stockRate != null" >
+        #{stockRate,jdbcType=DECIMAL},
+      </if>
+      <if test="forceStopRemindRatio != null" >
+        #{forceStopRemindRatio,jdbcType=DECIMAL},
+      </if>
+
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.SiteSetting" >
+    update site_setting
+    <set >
+      <if test="buyFee != null" >
+        buy_fee = #{buyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="sellFee != null" >
+        sell_fee = #{sellFee,jdbcType=DECIMAL},
+      </if>
+      <if test="stayFee != null" >
+        stay_fee = #{stayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="dutyFee != null" >
+        duty_fee = #{dutyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="stayMaxDays != null" >
+        stay_max_days = #{stayMaxDays,jdbcType=INTEGER},
+      </if>
+      <if test="buyMinAmt != null" >
+        buy_min_amt = #{buyMinAmt,jdbcType=INTEGER},
+      </if>
+      <if test="chargeMinAmt != null" >
+        charge_min_amt = #{chargeMinAmt,jdbcType=INTEGER},
+      </if>
+      <if test="buyMinNum != null" >
+        buy_min_num = #{buyMinNum,jdbcType=INTEGER},
+      </if>
+      <if test="forceStopFee != null" >
+        force_stop_fee = #{forceStopFee,jdbcType=DECIMAL},
+      </if>
+      <if test="buyMaxAmtPercent != null" >
+        buy_max_amt_percent = #{buyMaxAmtPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="forceStopPercent != null" >
+        force_stop_percent = #{forceStopPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="hightAndLow != null" >
+        hight_and_low = #{hightAndLow,jdbcType=DECIMAL},
+      </if>
+      <if test="withMinAmt != null" >
+        with_min_amt = #{withMinAmt,jdbcType=INTEGER},
+      </if>
+      <if test="creaseMaxPercent != null" >
+        crease_max_percent = #{creaseMaxPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="buyMaxNum != null" >
+        buy_max_num = #{buyMaxNum,jdbcType=INTEGER},
+      </if>
+      <if test="withTimeBegin != null" >
+        with_time_begin = #{withTimeBegin,jdbcType=INTEGER},
+      </if>
+      <if test="withTimeEnd != null" >
+        with_time_end = #{withTimeEnd,jdbcType=INTEGER},
+      </if>
+      <if test="transAmBegin != null" >
+        trans_am_begin = #{transAmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transAmEnd != null" >
+        trans_am_end = #{transAmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmBegin != null" >
+        trans_pm_begin = #{transPmBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="transPmEnd != null" >
+        trans_pm_end = #{transPmEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="withFeeSingle != null" >
+        with_fee_single = #{withFeeSingle,jdbcType=INTEGER},
+      </if>
+      <if test="withFeePercent != null" >
+        with_fee_percent = #{withFeePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="siteLever != null" >
+        site_lever = #{siteLever,jdbcType=VARCHAR},
+      </if>
+      <if test="buySameTimes != null" >
+        buy_same_times = #{buySameTimes,jdbcType=INTEGER},
+      </if>
+      <if test="buySameNums != null" >
+        buy_same_nums = #{buySameNums,jdbcType=INTEGER},
+      </if>
+      <if test="buyNumTimes != null" >
+        buy_num_times = #{buyNumTimes,jdbcType=INTEGER},
+      </if>
+      <if test="buyNumLots != null" >
+        buy_num_lots = #{buyNumLots,jdbcType=INTEGER},
+      </if>
+      <if test="cantSellTimes != null" >
+        cant_sell_times = #{cantSellTimes,jdbcType=INTEGER},
+      </if>
+
+      <if test="kcCreaseMaxPercent != null" >
+        kc_crease_max_percent = #{kcCreaseMaxPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="stockDays != null" >
+        stock_days = #{stockDays,jdbcType=INTEGER},
+      </if>
+      <if test="stockRate != null" >
+        stock_rate = #{stockRate,jdbcType=DECIMAL},
+      </if>
+      <if test="forceStopRemindRatio != null" >
+        force_stop_remind_ratio = #{forceStopRemindRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="cyCreaseMaxPercent != null" >
+        cy_crease_max_percent = #{cyCreaseMaxPercent,jdbcType=DECIMAL},
+      </if>
+
+    </set>
+
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.SiteSetting" >
+    update site_setting
+    set buy_fee = #{buyFee,jdbcType=DECIMAL},
+      sell_fee = #{sellFee,jdbcType=DECIMAL},
+      stay_fee = #{stayFee,jdbcType=DECIMAL},
+      duty_fee = #{dutyFee,jdbcType=DECIMAL},
+      stay_max_days = #{stayMaxDays,jdbcType=INTEGER},
+      buy_min_amt = #{buyMinAmt,jdbcType=INTEGER},
+      charge_min_amt = #{chargeMinAmt,jdbcType=INTEGER},
+      buy_min_num = #{buyMinNum,jdbcType=INTEGER},
+      force_stop_fee = #{forceStopFee,jdbcType=DECIMAL},
+      buy_max_amt_percent = #{buyMaxAmtPercent,jdbcType=DECIMAL},
+      force_stop_percent = #{forceStopPercent,jdbcType=DECIMAL},
+      hight_and_low = #{hightAndLow,jdbcType=DECIMAL},
+      with_min_amt = #{withMinAmt,jdbcType=INTEGER},
+      crease_max_percent = #{creaseMaxPercent,jdbcType=DECIMAL},
+      buy_max_num = #{buyMaxNum,jdbcType=INTEGER},
+      with_time_begin = #{withTimeBegin,jdbcType=INTEGER},
+      with_time_end = #{withTimeEnd,jdbcType=INTEGER},
+      trans_am_begin = #{transAmBegin,jdbcType=VARCHAR},
+      trans_am_end = #{transAmEnd,jdbcType=VARCHAR},
+      trans_pm_begin = #{transPmBegin,jdbcType=VARCHAR},
+      trans_pm_end = #{transPmEnd,jdbcType=VARCHAR},
+      with_fee_single = #{withFeeSingle,jdbcType=INTEGER},
+      with_fee_percent = #{withFeePercent,jdbcType=DECIMAL},
+      site_lever = #{siteLever,jdbcType=VARCHAR},
+      buy_same_times = #{buySameTimes,jdbcType=INTEGER},
+      buy_same_nums = #{buySameNums,jdbcType=INTEGER},
+      buy_num_times = #{buyNumTimes,jdbcType=INTEGER},
+      buy_num_lots = #{buyNumLots,jdbcType=INTEGER},
+      cant_sell_times = #{cantSellTimes,jdbcType=INTEGER},
+
+      kc_crease_max_percent = #{kcCreaseMaxPercent,jdbcType=DECIMAL},
+      stock_days = #{stockDays,jdbcType=INTEGER},
+      stock_rate = #{stockRate,jdbcType=DECIMAL},
+      force_stop_remind_ratio = #{forceStopRemindRatio,jdbcType=DECIMAL}
+
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+  <select id="findAllSiteSetting" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_setting
+  </select>
+
+
+
+
+</mapper>

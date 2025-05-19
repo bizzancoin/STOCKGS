@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.SitePayMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.SitePay" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+
+      <arg column="c_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="form_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="form_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+
+      <arg column="channel_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="channel_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="channel_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="channel_account" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="channel_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="channel_min_limit" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="channel_max_limit" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_show" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_lock" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="totalPrice" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+
+
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, c_type,form_url,form_code,channel_type, channel_name, channel_desc, channel_account, channel_img, channel_min_limit,
+    channel_max_limit, is_show, is_lock, totalPrice
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from site_pay
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site_pay
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.SitePay" >
+    insert into site_pay (id, c_type,form_url,form_code,channel_type, channel_name,
+      channel_desc, channel_account, channel_img,
+      channel_min_limit, channel_max_limit, is_show,
+      is_lock, totalPrice)
+    values (#{id,jdbcType=INTEGER}, #{cType,jdbcType=INTEGER},#{formUrl,jdbcType=VARCHAR},#{formCode,jdbcType=VARCHAR},
+      #{channelType,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR},
+      #{channelDesc,jdbcType=VARCHAR}, #{channelAccount,jdbcType=VARCHAR}, #{channelImg,jdbcType=VARCHAR},
+      #{channelMinLimit,jdbcType=INTEGER}, #{channelMaxLimit,jdbcType=INTEGER}, #{isShow,jdbcType=INTEGER},
+      #{isLock,jdbcType=INTEGER},#{totalPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.SitePay" >
+    insert into site_pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+
+      <if test="cType != null" >
+        c_type,
+      </if>
+      <if test="formUrl != null" >
+        form_url,
+      </if>
+      <if test="formCode != null" >
+        form_code,
+      </if>
+
+      <if test="channelType != null" >
+        channel_type,
+      </if>
+      <if test="channelName != null" >
+        channel_name,
+      </if>
+      <if test="channelDesc != null" >
+        channel_desc,
+      </if>
+      <if test="channelAccount != null" >
+        channel_account,
+      </if>
+      <if test="channelImg != null" >
+        channel_img,
+      </if>
+      <if test="channelMinLimit != null" >
+        channel_min_limit,
+      </if>
+      <if test="channelMaxLimit != null" >
+        channel_max_limit,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="isLock != null" >
+        is_lock,
+      </if>
+      <if test="totalPrice != null" >
+        totalPrice,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+
+      <if test="cType != null" >
+        #{cType,jdbcType=INTEGER},
+      </if>
+      <if test="formUrl != null" >
+        #{formUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="formCode != null" >
+        #{formCode,jdbcType=VARCHAR},
+      </if>
+
+      <if test="channelType != null" >
+        #{channelType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelDesc != null" >
+        #{channelDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="channelAccount != null" >
+        #{channelAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="channelImg != null" >
+        #{channelImg,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMinLimit != null" >
+        #{channelMinLimit,jdbcType=INTEGER},
+      </if>
+      <if test="channelMaxLimit != null" >
+        #{channelMaxLimit,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="isLock != null" >
+        #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.SitePay" >
+    update site_pay
+    <set >
+
+      <if test="cType != null" >
+        c_type = #{cType,jdbcType=INTEGER},
+      </if>
+      <if test="formUrl != null" >
+        form_url = #{formUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="formCode != null" >
+        form_code = #{formCode,jdbcType=VARCHAR},
+      </if>
+
+      <if test="channelType != null" >
+        channel_type = #{channelType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelDesc != null" >
+        channel_desc = #{channelDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="channelAccount != null" >
+        channel_account = #{channelAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="channelImg != null" >
+        channel_img = #{channelImg,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMinLimit != null" >
+        channel_min_limit = #{channelMinLimit,jdbcType=INTEGER},
+      </if>
+      <if test="channelMaxLimit != null" >
+        channel_max_limit = #{channelMaxLimit,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="isLock != null" >
+        is_lock = #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null" >
+        totalPrice = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.SitePay" >
+    update site_pay
+    set c_type = #{cType,jdbcType=INTEGER},
+      form_url = #{formUrl,jdbcType=VARCHAR},
+      form_code = #{formCode,jdbcType=VARCHAR},
+      channel_type = #{channelType,jdbcType=VARCHAR},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      channel_desc = #{channelDesc,jdbcType=VARCHAR},
+      channel_account = #{channelAccount,jdbcType=VARCHAR},
+      channel_img = #{channelImg,jdbcType=VARCHAR},
+      channel_min_limit = #{channelMinLimit,jdbcType=INTEGER},
+      channel_max_limit = #{channelMaxLimit,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=INTEGER},
+      is_lock = #{isLock,jdbcType=INTEGER},
+      totalPrice = #{totalPrice,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="findByChannelType" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_pay WHERE channel_type = #{channelType}
+  </select>
+
+
+  <select id="listByAdmin" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_pay
+    <where>
+      <if test="channelType != null and channelType != '' ">
+        channel_type = #{channelType}
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+
+  <select id="getPayInfo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_pay WHERE is_show = 0 and channel_max_limit>totalPrice
+    <if test="payAmt != null and payAmt > 0">
+      and channel_min_limit &lt;= #{payAmt} and channel_max_limit> #{payAmt}
+    </if>
+  </select>
+
+
+</mapper>

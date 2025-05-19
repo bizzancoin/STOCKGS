@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.UserPositionMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.UserPosition" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="position_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="position_sn" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="nick_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="stock_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_gid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock_spell" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="buy_order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="buy_order_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="buy_order_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="sell_order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sell_order_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="sell_order_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="profit_target_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="stop_target_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_direction" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_lever" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_total_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_fee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_spread" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_stay_fee" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_stay_days" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="profit_and_lose" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="all_profit_and_lose" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+
+      <arg column="is_lock" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="lock_msg" jdbcType="VARCHAR" javaType="java.lang.String" />
+
+      <arg column="stock_plate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="spread_rate_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="margin_add" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, position_type, position_sn, user_id, nick_name, agent_id, stock_name, stock_code, 
+    stock_gid, stock_spell, buy_order_id, buy_order_time, buy_order_price, sell_order_id, 
+    sell_order_time, sell_order_price, profit_target_price, stop_target_price, order_direction, 
+    order_num, order_lever, order_total_price, order_fee, order_spread, order_stay_fee, 
+    order_stay_days, profit_and_lose, all_profit_and_lose,is_lock,lock_msg,stock_plate,spread_rate_price,margin_add
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_position
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_position
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.UserPosition" >
+    insert into user_position (id, position_type, position_sn, 
+      user_id, nick_name, agent_id, 
+      stock_name, stock_code, stock_gid, 
+      stock_spell, buy_order_id, buy_order_time, 
+      buy_order_price, sell_order_id, sell_order_time, 
+      sell_order_price, profit_target_price, stop_target_price, 
+      order_direction, order_num, order_lever, 
+      order_total_price, order_fee, order_spread, 
+      order_stay_fee, order_stay_days, profit_and_lose, 
+      all_profit_and_lose, is_lock, lock_msg,stock_plate,spread_rate_price)
+    values (#{id,jdbcType=INTEGER}, #{positionType,jdbcType=INTEGER}, #{positionSn,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{agentId,jdbcType=INTEGER}, 
+      #{stockName,jdbcType=VARCHAR}, #{stockCode,jdbcType=VARCHAR}, #{stockGid,jdbcType=VARCHAR}, 
+      #{stockSpell,jdbcType=VARCHAR}, #{buyOrderId,jdbcType=VARCHAR}, #{buyOrderTime,jdbcType=TIMESTAMP}, 
+      #{buyOrderPrice,jdbcType=DECIMAL}, #{sellOrderId,jdbcType=VARCHAR}, #{sellOrderTime,jdbcType=TIMESTAMP}, 
+      #{sellOrderPrice,jdbcType=DECIMAL}, #{profitTargetPrice,jdbcType=DECIMAL}, #{stopTargetPrice,jdbcType=DECIMAL}, 
+      #{orderDirection,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, #{orderLever,jdbcType=INTEGER}, 
+      #{orderTotalPrice,jdbcType=DECIMAL}, #{orderFee,jdbcType=DECIMAL}, #{orderSpread,jdbcType=DECIMAL}, 
+      #{orderStayFee,jdbcType=DECIMAL}, #{orderStayDays,jdbcType=INTEGER}, #{profitAndLose,jdbcType=DECIMAL}, 
+      #{allProfitAndLose,jdbcType=DECIMAL}, #{isLock,jdbcType=INTEGER}, #{lockMsg,jdbcType=VARCHAR},
+      #{stockPlate,jdbcType=VARCHAR},#{spreadRatePrice,jdbcType=DECIMAL}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.xc.pojo.UserPosition" >
+    insert into user_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="positionType != null" >
+        position_type,
+      </if>
+      <if test="positionSn != null" >
+        position_sn,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="stockName != null" >
+        stock_name,
+      </if>
+      <if test="stockCode != null" >
+        stock_code,
+      </if>
+      <if test="stockGid != null" >
+        stock_gid,
+      </if>
+      <if test="stockSpell != null" >
+        stock_spell,
+      </if>
+      <if test="buyOrderId != null" >
+        buy_order_id,
+      </if>
+      <if test="buyOrderTime != null" >
+        buy_order_time,
+      </if>
+      <if test="buyOrderPrice != null" >
+        buy_order_price,
+      </if>
+      <if test="sellOrderId != null" >
+        sell_order_id,
+      </if>
+      <if test="sellOrderTime != null" >
+        sell_order_time,
+      </if>
+      <if test="sellOrderPrice != null" >
+        sell_order_price,
+      </if>
+      <if test="profitTargetPrice != null" >
+        profit_target_price,
+      </if>
+      <if test="stopTargetPrice != null" >
+        stop_target_price,
+      </if>
+      <if test="orderDirection != null" >
+        order_direction,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="orderLever != null" >
+        order_lever,
+      </if>
+      <if test="orderTotalPrice != null" >
+        order_total_price,
+      </if>
+      <if test="orderFee != null" >
+        order_fee,
+      </if>
+      <if test="orderSpread != null" >
+        order_spread,
+      </if>
+      <if test="orderStayFee != null" >
+        order_stay_fee,
+      </if>
+      <if test="orderStayDays != null" >
+        order_stay_days,
+      </if>
+      <if test="profitAndLose != null" >
+        profit_and_lose,
+      </if>
+      <if test="allProfitAndLose != null" >
+        all_profit_and_lose,
+      </if>
+
+      <if test="isLock != null" >
+        is_lock,
+      </if>
+      <if test="lockMsg != null" >
+        lock_msg,
+      </if>
+      <if test="stockPlate != null" >
+        stock_plate,
+      </if>
+      <if test="spreadRatePrice != null" >
+        spread_rate_price,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="positionType != null" >
+        #{positionType,jdbcType=INTEGER},
+      </if>
+      <if test="positionSn != null" >
+        #{positionSn,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="stockName != null" >
+        #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null" >
+        #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockGid != null" >
+        #{stockGid,jdbcType=VARCHAR},
+      </if>
+      <if test="stockSpell != null" >
+        #{stockSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="buyOrderId != null" >
+        #{buyOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyOrderTime != null" >
+        #{buyOrderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyOrderPrice != null" >
+        #{buyOrderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellOrderId != null" >
+        #{sellOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellOrderTime != null" >
+        #{sellOrderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellOrderPrice != null" >
+        #{sellOrderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="profitTargetPrice != null" >
+        #{profitTargetPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stopTargetPrice != null" >
+        #{stopTargetPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderDirection != null" >
+        #{orderDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderLever != null" >
+        #{orderLever,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotalPrice != null" >
+        #{orderTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFee != null" >
+        #{orderFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderSpread != null" >
+        #{orderSpread,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStayFee != null" >
+        #{orderStayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStayDays != null" >
+        #{orderStayDays,jdbcType=INTEGER},
+      </if>
+      <if test="profitAndLose != null" >
+        #{profitAndLose,jdbcType=DECIMAL},
+      </if>
+      <if test="allProfitAndLose != null" >
+        #{allProfitAndLose,jdbcType=DECIMAL},
+      </if>
+
+      <if test="isLock != null" >
+        #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="lockMsg != null" >
+        #{lockMsg,jdbcType=VARCHAR},
+      </if>
+
+      <if test="stockPlate != null" >
+        #{stockPlate,jdbcType=VARCHAR},
+      </if>
+      <if test="spreadRatePrice != null" >
+        #{spreadRatePrice,jdbcType=DECIMAL},
+      </if>
+
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.UserPosition" >
+    update user_position
+    <set >
+      <if test="positionType != null" >
+        position_type = #{positionType,jdbcType=INTEGER},
+      </if>
+      <if test="positionSn != null" >
+        position_sn = #{positionSn,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="stockName != null" >
+        stock_name = #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCode != null" >
+        stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockGid != null" >
+        stock_gid = #{stockGid,jdbcType=VARCHAR},
+      </if>
+      <if test="stockSpell != null" >
+        stock_spell = #{stockSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="buyOrderId != null" >
+        buy_order_id = #{buyOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyOrderTime != null" >
+        buy_order_time = #{buyOrderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyOrderPrice != null" >
+        buy_order_price = #{buyOrderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellOrderId != null" >
+        sell_order_id = #{sellOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellOrderTime != null" >
+        sell_order_time = #{sellOrderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellOrderPrice != null" >
+        sell_order_price = #{sellOrderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="profitTargetPrice != null" >
+        profit_target_price = #{profitTargetPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stopTargetPrice != null" >
+        stop_target_price = #{stopTargetPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderDirection != null" >
+        order_direction = #{orderDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderLever != null" >
+        order_lever = #{orderLever,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotalPrice != null" >
+        order_total_price = #{orderTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFee != null" >
+        order_fee = #{orderFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderSpread != null" >
+        order_spread = #{orderSpread,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStayFee != null" >
+        order_stay_fee = #{orderStayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStayDays != null" >
+        order_stay_days = #{orderStayDays,jdbcType=INTEGER},
+      </if>
+      <if test="profitAndLose != null" >
+        profit_and_lose = #{profitAndLose,jdbcType=DECIMAL},
+      </if>
+      <if test="allProfitAndLose != null" >
+        all_profit_and_lose = #{allProfitAndLose,jdbcType=DECIMAL},
+      </if>
+
+      <if test="isLock != null" >
+        is_lock = #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="lockMsg != null" >
+        lock_msg = #{lockMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="stockPlate != null" >
+        stock_plate = #{stockPlate,jdbcType=VARCHAR},
+      </if>
+      <if test="spreadRatePrice != null" >
+        spread_rate_price = #{spreadRatePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marginAdd != null" >
+        margin_add = #{marginAdd,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.UserPosition" >
+    update user_position
+    set position_type = #{positionType,jdbcType=INTEGER},
+      position_sn = #{positionSn,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      agent_id = #{agentId,jdbcType=INTEGER},
+      stock_name = #{stockName,jdbcType=VARCHAR},
+      stock_code = #{stockCode,jdbcType=VARCHAR},
+      stock_gid = #{stockGid,jdbcType=VARCHAR},
+      stock_spell = #{stockSpell,jdbcType=VARCHAR},
+      buy_order_id = #{buyOrderId,jdbcType=VARCHAR},
+      buy_order_time = #{buyOrderTime,jdbcType=TIMESTAMP},
+      buy_order_price = #{buyOrderPrice,jdbcType=DECIMAL},
+      sell_order_id = #{sellOrderId,jdbcType=VARCHAR},
+      sell_order_time = #{sellOrderTime,jdbcType=TIMESTAMP},
+      sell_order_price = #{sellOrderPrice,jdbcType=DECIMAL},
+      profit_target_price = #{profitTargetPrice,jdbcType=DECIMAL},
+      stop_target_price = #{stopTargetPrice,jdbcType=DECIMAL},
+      order_direction = #{orderDirection,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      order_lever = #{orderLever,jdbcType=INTEGER},
+      order_total_price = #{orderTotalPrice,jdbcType=DECIMAL},
+      order_fee = #{orderFee,jdbcType=DECIMAL},
+      order_spread = #{orderSpread,jdbcType=DECIMAL},
+      order_stay_fee = #{orderStayFee,jdbcType=DECIMAL},
+      order_stay_days = #{orderStayDays,jdbcType=INTEGER},
+      profit_and_lose = #{profitAndLose,jdbcType=DECIMAL},
+      all_profit_and_lose = #{allProfitAndLose,jdbcType=DECIMAL},
+      is_lock = #{isLock,jdbcType=INTEGER},
+      lock_msg = #{lockMsg,jdbcType=VARCHAR},
+      stock_plate = #{stockPlate,jdbcType=VARCHAR},
+      spread_rate_price = #{spreadRatePrice,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="findPositionBySn" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_position
+    WHERE position_sn = #{positionSn}
+  </select>
+
+  <select id="findMyPositionByCodeAndSpell" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_position
+    <where>
+      user_id = #{uid}
+      <if test="state != null ">
+        <if test="state == 0">
+          and sell_order_id is null
+        </if>
+        <if test="state == 1">
+          and sell_order_id is not null
+        </if>
+      </if>
+      <if test="stockCode != null and stockCode != '' ">
+        and stock_code like CONCAT('%','${stockCode}','%')
+      </if>
+      <if test="stockSpell != null and stockSpell != '' ">
+        and stock_spell like CONCAT('%','${stockSpell}','%')
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+  <select id="findPositionByUserIdAndSellIdIsNull" parameterType="integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_position
+    WHERE user_id = #{userId} and sell_order_id is null
+    order by id desc
+  </select>
+
+  <select id="findPositionByUserIdAndSellIdNotNull" parameterType="integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_position
+    WHERE user_id = #{userId} and sell_order_id  is not null
+    order by id desc
+  </select>
+
+
+  <select id="listByAgent" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_position
+    <where>
+      <if test="searchId != null  ">
+        and agent_id = #{searchId}
+      </if>
+      <if test="state != null  ">
+        <if test="state == 0">
+          and sell_order_id is null
+        </if>
+        <if test="state == 1">
+          and sell_order_id is not null
+        </if>
+      </if>
+      <if test="userId != null and userId != '' ">
+        and user_id = #{userId}
+      </if>
+      <if test="positionSn != null and positionSn != '' ">
+        and position_sn like CONCAT('%','${positionSn}','%')
+      </if>
+      <if test="positionType != null ">
+        and position_type = #{positionType}
+      </if>
+      <if test="beginTime != null ">
+        and sell_order_time <![CDATA[>=]]> #{beginTime}
+      </if>
+      <if test="endTime != null ">
+        and sell_order_time <![CDATA[<=]]> #{endTime}
+      </if>
+    </where>
+    ORDER BY id DESC
+  </select>
+
+
+
+  <select id="findAllStayPosition" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_position
+    WHERE sell_order_id is NULL
+  </select>
+
+
+  <select id="findDistinctUserIdList" resultType="integer" >
+    SELECT DISTINCT user_id FROM user_position WHERE sell_order_id is null
+  </select>
+
+  <select id="CountPositionNum" parameterType="map" resultType="integer">
+    SELECT COUNT(id) FROM user_position
+    <where>
+      position_type = #{accountType}
+      <if test="state == 1">
+        and sell_order_id is null
+      </if>
+      <if test="state == 2">
+        and sell_order_id is not null
+      </if>
+    </where>
+  </select>
+  
+  
+  
+  <select id="CountPositionProfitAndLose" resultType="decimal" parameterType="integer">
+    SELECT sum(profit_and_lose) FROM user_position
+    WHERE sell_order_id is not null
+  </select>
+
+  <select id="CountPositionAllProfitAndLose" resultType="decimal" parameterType="integer">
+    SELECT sum(all_profit_and_lose) FROM user_position
+    WHERE sell_order_id is not null
+  </select>
+
+
+  <delete id="deleteByUserId" parameterType="integer">
+    DELETE FROM user_position WHERE user_id = #{userId}
+  </delete>
+
+
+  <select id="findPositionByStockCodeAndTimes" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_position
+    WHERE stock_code = #{stockCode} and user_id = #{userId}
+    and buy_order_time <![CDATA[>=]]> #{minuteTimes}
+  </select>
+
+
+
+  <select id="findPositionNumByTimes" parameterType="map" resultType="integer">
+    SELECT COALESCE(SUM(order_num),0)
+    FROM user_position
+    WHERE user_id = #{userId}
+    and buy_order_time <![CDATA[>=]]> #{beginDate}
+  </select>
+
+  <!--股票入仓最新top列表-->
+  <select id="findPositionTopList" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_position
+    <where>
+      1=1
+    </where>
+    ORDER BY id DESC
+    limit #{pageSize}
+  </select>
+
+  <!--根据股票代码查询用户最早入仓股票-->
+  <select id="findUserPositionByCode" parameterType="integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user_position
+    <where>
+      user_id = #{userId}
+      and stock_code = #{stockCode}
+      and sell_order_price is null
+    </where>
+    ORDER BY id ASC
+    limit 1
+  </select>
+
+</mapper>
+

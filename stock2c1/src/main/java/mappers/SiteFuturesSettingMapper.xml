@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.SiteFuturesSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.SiteFuturesSetting" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_max_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="force_sell_percent" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="buy_same_times" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_same_nums" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_num_times" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buy_num_lots" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="force_stop_remind_ratio" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, buy_max_percent, force_sell_percent, buy_same_times, buy_same_nums, buy_num_times, 
+    buy_num_lots, force_stop_remind_ratio
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from site_futures_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site_futures_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.SiteFuturesSetting" >
+    insert into site_futures_setting (id, buy_max_percent, force_sell_percent, 
+      buy_same_times, buy_same_nums, buy_num_times, 
+      buy_num_lots, force_stop_remind_ratio)
+    values (#{id,jdbcType=INTEGER}, #{buyMaxPercent,jdbcType=DECIMAL}, #{forceSellPercent,jdbcType=DECIMAL}, 
+      #{buySameTimes,jdbcType=INTEGER}, #{buySameNums,jdbcType=INTEGER}, #{buyNumTimes,jdbcType=INTEGER}, 
+      #{buyNumLots,jdbcType=INTEGER}, #{forceStopRemindRatio,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.SiteFuturesSetting" >
+    insert into site_futures_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="buyMaxPercent != null" >
+        buy_max_percent,
+      </if>
+      <if test="forceSellPercent != null" >
+        force_sell_percent,
+      </if>
+      <if test="buySameTimes != null" >
+        buy_same_times,
+      </if>
+      <if test="buySameNums != null" >
+        buy_same_nums,
+      </if>
+      <if test="buyNumTimes != null" >
+        buy_num_times,
+      </if>
+      <if test="buyNumLots != null" >
+        buy_num_lots,
+      </if>
+      <if test="forceStopRemindRatio != null" >
+        force_stop_remind_ratio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="buyMaxPercent != null" >
+        #{buyMaxPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="forceSellPercent != null" >
+        #{forceSellPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="buySameTimes != null" >
+        #{buySameTimes,jdbcType=INTEGER},
+      </if>
+      <if test="buySameNums != null" >
+        #{buySameNums,jdbcType=INTEGER},
+      </if>
+      <if test="buyNumTimes != null" >
+        #{buyNumTimes,jdbcType=INTEGER},
+      </if>
+      <if test="buyNumLots != null" >
+        #{buyNumLots,jdbcType=INTEGER},
+      </if>
+      <if test="forceStopRemindRatio != null" >
+        #{forceStopRemindRatio,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.SiteFuturesSetting" >
+    update site_futures_setting
+    <set >
+      <if test="buyMaxPercent != null" >
+        buy_max_percent = #{buyMaxPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="forceSellPercent != null" >
+        force_sell_percent = #{forceSellPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="buySameTimes != null" >
+        buy_same_times = #{buySameTimes,jdbcType=INTEGER},
+      </if>
+      <if test="buySameNums != null" >
+        buy_same_nums = #{buySameNums,jdbcType=INTEGER},
+      </if>
+      <if test="buyNumTimes != null" >
+        buy_num_times = #{buyNumTimes,jdbcType=INTEGER},
+      </if>
+      <if test="buyNumLots != null" >
+        buy_num_lots = #{buyNumLots,jdbcType=INTEGER},
+      </if>
+      <if test="forceStopRemindRatio != null" >
+        force_stop_remind_ratio = #{forceStopRemindRatio,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.SiteFuturesSetting" >
+    update site_futures_setting
+    set buy_max_percent = #{buyMaxPercent,jdbcType=DECIMAL},
+      force_sell_percent = #{forceSellPercent,jdbcType=DECIMAL},
+      buy_same_times = #{buySameTimes,jdbcType=INTEGER},
+      buy_same_nums = #{buySameNums,jdbcType=INTEGER},
+      buy_num_times = #{buyNumTimes,jdbcType=INTEGER},
+      buy_num_lots = #{buyNumLots,jdbcType=INTEGER},
+      force_stop_remind_ratio = #{forceStopRemindRatio,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  
+  
+  <select id="selectAllSiteSetting" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_futures_setting
+  </select>
+
+
+
+
+
+
+</mapper>
+
+

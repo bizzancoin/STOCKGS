@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.FundsSecuritiesInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.FundsSecuritiesInfo" >
+        <result column="id" property="id" />
+        <result column="dealer_institutions_id" property="dealerInstitutionsId" />
+        <result column="dealer_institutions_name" property="dealerInstitutionsName" />
+        <result column="sales_department" property="salesDepartment" />
+        <result column="account_name" property="accountName" />
+        <result column="transact_account" property="transactAccount" />
+        <result column="transact_password" property="transactPassword" />
+        <result column="communication_password" property="communicationPassword" />
+        <result column="commission_ratio" property="commissionRatio" />
+        <result column="minimum_commissions" property="minimumCommissions" />
+        <result column="status" property="status" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                dealer_institutions_id,
+                dealer_institutions_name,
+                sales_department,
+                account_name,
+                transact_account,
+                transact_password,
+                communication_password,
+                commission_ratio,
+                minimum_commissions,
+                status,
+                add_time,
+                update_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.FundsSecuritiesInfo">
+        INSERT INTO funds_securities_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != dealerInstitutionsId'>
+                dealer_institutions_id,
+            </if>
+            <if test ='null != dealerInstitutionsName'>
+                dealer_institutions_name,
+            </if>
+            <if test ='null != salesDepartment'>
+                sales_department,
+            </if>
+            <if test ='null != accountName'>
+                account_name,
+            </if>
+            <if test ='null != transactAccount'>
+                transact_account,
+            </if>
+            <if test ='null != transactPassword'>
+                transact_password,
+            </if>
+            <if test ='null != communicationPassword'>
+                communication_password,
+            </if>
+            <if test ='null != commissionRatio'>
+                commission_ratio,
+            </if>
+            <if test ='null != minimumCommissions'>
+                minimum_commissions,
+            </if>
+            <if test ='null != status'>
+                status,
+            </if>
+            <if test ='null != addTime'>
+                add_time,
+            </if>
+            <if test ='null != updateTime'>
+                update_time
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != dealerInstitutionsId'>
+                #{dealerInstitutionsId},
+            </if>
+            <if test ='null != dealerInstitutionsName'>
+                #{dealerInstitutionsName},
+            </if>
+            <if test ='null != salesDepartment'>
+                #{salesDepartment},
+            </if>
+            <if test ='null != accountName'>
+                #{accountName},
+            </if>
+            <if test ='null != transactAccount'>
+                #{transactAccount},
+            </if>
+            <if test ='null != transactPassword'>
+                #{transactPassword},
+            </if>
+            <if test ='null != communicationPassword'>
+                #{communicationPassword},
+            </if>
+            <if test ='null != commissionRatio'>
+                #{commissionRatio},
+            </if>
+            <if test ='null != minimumCommissions'>
+                #{minimumCommissions},
+            </if>
+            <if test ='null != status'>
+                #{status},
+            </if>
+            <if test ='null != addTime'>
+                #{addTime},
+            </if>
+            <if test ='null != updateTime'>
+                #{updateTime}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM funds_securities_info
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.FundsSecuritiesInfo">
+        UPDATE funds_securities_info
+        <set>
+            <if test ='null != dealerInstitutionsId'>dealer_institutions_id = #{dealerInstitutionsId},</if>
+            <if test ='null != dealerInstitutionsName'>dealer_institutions_name = #{dealerInstitutionsName},</if>
+            <if test ='null != salesDepartment'>sales_department = #{salesDepartment},</if>
+            <if test ='null != accountName'>account_name = #{accountName},</if>
+            <if test ='null != transactAccount'>transact_account = #{transactAccount},</if>
+            <if test ='null != transactPassword'>transact_password = #{transactPassword},</if>
+            <if test ='null != communicationPassword'>communication_password = #{communicationPassword},</if>
+            <if test ='null != commissionRatio'>commission_ratio = #{commissionRatio},</if>
+            <if test ='null != minimumCommissions'>minimum_commissions = #{minimumCommissions},</if>
+            <if test ='null != status'>status = #{status},</if>
+            <if test ='null != addTime'>add_time = #{addTime},</if>
+            <if test ='null != updateTime'>update_time = #{updateTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_securities_info
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_securities_info
+        where 1=1
+        <if test="keyword != null and keyword != ''">
+            and (dealer_institutions_name like CONCAT('%',#{keyword},'%') or sales_department like CONCAT('%',#{keyword},'%') or account_name like CONCAT('%',#{keyword},'%') )
+        </if>
+        order by id desc
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM funds_securities_info
+    </select>
+
+    <!--查询可用的证券信息-->
+    <select id="getEnabledList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_securities_info
+        where 1=1
+        and status = 1
+        order by id desc
+    </select>
+
+</mapper>

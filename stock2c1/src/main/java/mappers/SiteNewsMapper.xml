@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.SiteNewsMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.SiteNews" >
+        <result column="id" property="id" />
+        <result column="type" property="type" />
+        <result column="title" property="title" />
+        <result column="source_id" property="sourceId" />
+        <result column="source_name" property="sourceName" />
+        <result column="views" property="views" />
+        <result column="status" property="status" />
+        <result column="show_time" property="showTime" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="imgurl" property="imgurl" />
+        <result column="description" property="description" />
+        <result column="content" property="content" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                type,
+                title,
+                source_id,
+                source_name,
+                views,
+                status,
+                show_time,
+                add_time,
+                update_time,
+                imgurl,
+                description,
+                content
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.SiteNews">
+        INSERT INTO site_news
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != type'>
+                type,
+            </if>
+            <if test ='null != title'>
+                title,
+            </if>
+            <if test ='null != sourceId'>
+                source_id,
+            </if>
+            <if test ='null != sourceName'>
+                source_name,
+            </if>
+            <if test ='null != views'>
+                views,
+            </if>
+            <if test ='null != status'>
+                status,
+            </if>
+            <if test ='null != showTime'>
+                show_time,
+            </if>
+            <if test ='null != addTime'>
+                add_time,
+            </if>
+            <if test ='null != updateTime'>
+                update_time,
+            </if>
+            <if test ='null != imgurl'>
+                imgurl,
+            </if>
+            <if test ='null != description'>
+                description,
+            </if>
+            <if test ='null != content'>
+                content
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != type'>
+                #{type},
+            </if>
+            <if test ='null != title'>
+                #{title},
+            </if>
+            <if test ='null != sourceId'>
+                #{sourceId},
+            </if>
+            <if test ='null != sourceName'>
+                #{sourceName},
+            </if>
+            <if test ='null != views'>
+                #{views},
+            </if>
+            <if test ='null != status'>
+                #{status},
+            </if>
+            <if test ='null != showTime'>
+                #{showTime},
+            </if>
+            <if test ='null != addTime'>
+                #{addTime},
+            </if>
+            <if test ='null != updateTime'>
+                #{updateTime},
+            </if>
+            <if test ='null != imgurl'>
+                #{imgurl},
+            </if>
+            <if test ='null != description'>
+                #{description},
+            </if>
+            <if test ='null != content'>
+                #{content}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM site_news
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.SiteNews">
+        UPDATE site_news
+        <set>
+            <if test ='null != type'>type = #{type},</if>
+            <if test ='null != title'>title = #{title},</if>
+            <if test ='null != sourceId'>source_id = #{sourceId},</if>
+            <if test ='null != sourceName'>source_name = #{sourceName},</if>
+            <if test ='null != views'>views = #{views},</if>
+            <if test ='null != status'>status = #{status},</if>
+            <if test ='null != showTime'>show_time = #{showTime},</if>
+            <if test ='null != addTime'>add_time = #{addTime},</if>
+            <if test ='null != updateTime'>update_time = #{updateTime},</if>
+            <if test ='null != imgurl'>imgurl = #{imgurl},</if>
+            <if test ='null != description'>description = #{description},</if>
+            <if test ='null != content'>content = #{content}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM site_news
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM site_news
+        where status=1
+        <if test="keyword != null and keyword != ''">
+            and (title like CONCAT('%',#{keyword},'%') or source_name like CONCAT('%',#{keyword},'%'))
+        </if>
+        <if test="type != null ">
+            and type=#{type}
+        </if>
+        <if test="sort != null and sort == 'time1' ">
+            order by show_time desc
+        </if>
+        <if test="sort != null and sort == 'time0' ">
+            order by show_time asc
+        </if>
+        <if test="sort != null and sort == 'views1' ">
+            order by views desc
+        </if>
+        <if test="sort != null and sort == 'views0' ">
+            order by views asc
+        </if>
+        <if test="sort == null">
+            order by show_time desc
+        </if>
+
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM site_news
+    </select>
+
+    <!--根据来源id查询新闻数-->
+    <select id="getNewsBySourceIdCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM site_news
+        WHERE source_id = #{sourceId}
+    </select>
+
+    <!--修改新闻浏览量-->
+    <update id="updateViews" >
+        UPDATE site_news
+        <set>
+            views = views + 1
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--top最新新闻资讯-->
+    <select id="getTopNewsList" resultMap="BaseResultMap">
+        SELECT  <include refid="Base_Column_List" />
+        FROM site_news
+        where status=1
+        order by show_time desc
+        limit #{pageSize}
+    </select>
+
+</mapper>

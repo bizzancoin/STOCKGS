@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.dao.FundsTradingAccountMapper">
+
+    <resultMap id="BaseResultMap" type="com.xc.pojo.FundsTradingAccount" >
+        <result column="id" property="id" />
+        <result column="dealer_institutions_id" property="dealerInstitutionsId" />
+        <result column="dealer_institutions_name" property="dealerInstitutionsName" />
+        <result column="account_name" property="accountName" />
+        <result column="subaccount_number" property="subaccountNumber" />
+        <result column="account_mode" property="accountMode" />
+        <result column="automatic_unwind_switch" property="automaticUnwindSwitch" />
+        <result column="ban_unwind_switch" property="banUnwindSwitch" />
+        <result column="automatic_renewal_switch" property="automaticRenewalSwitch" />
+        <result column="ban_levite" property="banLevite" />
+        <result column="warning_line" property="warningLine" />
+        <result column="unwind_line" property="unwindLine" />
+        <result column="single_holding_ratio" property="singleHoldingRatio" />
+        <result column="status" property="status" />
+        <result column="add_time" property="addTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="remarks" property="remarks" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                dealer_institutions_id,
+                dealer_institutions_name,
+                account_name,
+                subaccount_number,
+                account_mode,
+                automatic_unwind_switch,
+                ban_unwind_switch,
+                automatic_renewal_switch,
+                ban_levite,
+                warning_line,
+                unwind_line,
+                single_holding_ratio,
+                status,
+                add_time,
+                update_time,
+                remarks
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xc.pojo.FundsTradingAccount">
+        INSERT INTO funds_trading_account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != dealerInstitutionsId'>
+                dealer_institutions_id,
+            </if>
+            <if test ='null != dealerInstitutionsName'>
+                dealer_institutions_name,
+            </if>
+            <if test ='null != accountName'>
+                account_name,
+            </if>
+            <if test ='null != subaccountNumber'>
+                subaccount_number,
+            </if>
+            <if test ='null != accountMode'>
+                account_mode,
+            </if>
+            <if test ='null != automaticUnwindSwitch'>
+                automatic_unwind_switch,
+            </if>
+            <if test ='null != banUnwindSwitch'>
+                ban_unwind_switch,
+            </if>
+            <if test ='null != automaticRenewalSwitch'>
+                automatic_renewal_switch,
+            </if>
+            <if test ='null != banLevite'>
+                ban_levite,
+            </if>
+            <if test ='null != warningLine'>
+                warning_line,
+            </if>
+            <if test ='null != unwindLine'>
+                unwind_line,
+            </if>
+            <if test ='null != singleHoldingRatio'>
+                single_holding_ratio,
+            </if>
+            <if test ='null != status'>
+                status,
+            </if>
+            <if test ='null != addTime'>
+                add_time,
+            </if>
+            <if test ='null != updateTime'>
+                update_time,
+            </if>
+            <if test ='null != remarks'>
+                remarks
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != dealerInstitutionsId'>
+                #{dealerInstitutionsId},
+            </if>
+            <if test ='null != dealerInstitutionsName'>
+                #{dealerInstitutionsName},
+            </if>
+            <if test ='null != accountName'>
+                #{accountName},
+            </if>
+            <if test ='null != subaccountNumber'>
+                #{subaccountNumber},
+            </if>
+            <if test ='null != accountMode'>
+                #{accountMode},
+            </if>
+            <if test ='null != automaticUnwindSwitch'>
+                #{automaticUnwindSwitch},
+            </if>
+            <if test ='null != banUnwindSwitch'>
+                #{banUnwindSwitch},
+            </if>
+            <if test ='null != automaticRenewalSwitch'>
+                #{automaticRenewalSwitch},
+            </if>
+            <if test ='null != banLevite'>
+                #{banLevite},
+            </if>
+            <if test ='null != warningLine'>
+                #{warningLine},
+            </if>
+            <if test ='null != unwindLine'>
+                #{unwindLine},
+            </if>
+            <if test ='null != singleHoldingRatio'>
+                #{singleHoldingRatio},
+            </if>
+            <if test ='null != status'>
+                #{status},
+            </if>
+            <if test ='null != addTime'>
+                #{addTime},
+            </if>
+            <if test ='null != updateTime'>
+                #{updateTime},
+            </if>
+            <if test ='null != remarks'>
+                #{remarks}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM funds_trading_account
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xc.pojo.FundsTradingAccount">
+        UPDATE funds_trading_account
+        <set>
+            <if test ='null != dealerInstitutionsId'>dealer_institutions_id = #{dealerInstitutionsId},</if>
+            <if test ='null != dealerInstitutionsName'>dealer_institutions_name = #{dealerInstitutionsName},</if>
+            <if test ='null != accountName'>account_name = #{accountName},</if>
+            <if test ='null != subaccountNumber'>subaccount_number = #{subaccountNumber},</if>
+            <if test ='null != accountMode'>account_mode = #{accountMode},</if>
+            <if test ='null != automaticUnwindSwitch'>automatic_unwind_switch = #{automaticUnwindSwitch},</if>
+            <if test ='null != banUnwindSwitch'>ban_unwind_switch = #{banUnwindSwitch},</if>
+            <if test ='null != automaticRenewalSwitch'>automatic_renewal_switch = #{automaticRenewalSwitch},</if>
+            <if test ='null != banLevite'>ban_levite = #{banLevite},</if>
+            <if test ='null != warningLine'>warning_line = #{warningLine},</if>
+            <if test ='null != unwindLine'>unwind_line = #{unwindLine},</if>
+            <if test ='null != singleHoldingRatio'>single_holding_ratio = #{singleHoldingRatio},</if>
+            <if test ='null != status'>status = #{status},</if>
+            <if test ='null != addTime'>add_time = #{addTime},</if>
+            <if test ='null != updateTime'>update_time = #{updateTime},</if>
+            <if test ='null != remarks'>remarks = #{remarks}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_trading_account
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_trading_account
+        where 1=1
+        <if test="keyword != null and keyword != ''">
+            and  (CAST(subaccount_number AS CHAR) like CONCAT('%',#{keyword},'%') or dealer_institutions_name like CONCAT('%',#{keyword},'%') )
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        order by id desc
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM funds_trading_account
+    </select>
+
+    <!--查询最新交易账户编号-->
+    <select id="getMaxNumber"  resultType="java.lang.Integer">
+        SELECT ifnull(MAX(subaccount_number)+1,80000000) from funds_trading_account
+    </select>
+
+    <!--根据子账户编号查询详细信息-->
+    <select id="getAccountByNumber" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM funds_trading_account
+        WHERE subaccount_number = #{subaccountNumber}
+    </select>
+
+</mapper>

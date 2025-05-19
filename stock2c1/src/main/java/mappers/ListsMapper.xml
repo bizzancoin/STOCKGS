@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.ListsMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.Lists" >
+    <constructor >
+      <idArg column="lists_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="agent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="xgname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="codes" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bzj" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zts" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="mrsj" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nums" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="winums" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    lists_id, agent, zname, phone, xgname, codes, bzj, zts, mrsj, nums, winums
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xc.pojo.ListsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from lists
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lists
+    where lists_id = #{listsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lists
+    where lists_id = #{listsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xc.pojo.ListsExample" >
+    delete from lists
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.Lists" >
+    <selectKey resultType="java.lang.Integer" keyProperty="listsId" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lists (lists_id, agent, zname, 
+      phone, xgname, codes, 
+      bzj, zts, mrsj, nums, 
+      winums)
+    values (#{listsId,jdbcType=INTEGER}, #{agent,jdbcType=VARCHAR}, #{zname,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{xgname,jdbcType=VARCHAR}, #{codes,jdbcType=VARCHAR}, 
+      #{bzj,jdbcType=VARCHAR}, #{zts,jdbcType=SMALLINT}, #{mrsj,jdbcType=VARCHAR}, #{nums,jdbcType=VARCHAR}, 
+      #{winums,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.Lists" >
+    <selectKey resultType="java.lang.Integer" keyProperty="listsId" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lists
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="agent != null" >
+        agent,
+      </if>
+      <if test="zname != null" >
+        zname,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="xgname != null" >
+        xgname,
+      </if>
+      <if test="codes != null" >
+        codes,
+      </if>
+      <if test="bzj != null" >
+        bzj,
+      </if>
+      <if test="zts != null" >
+        zts,
+      </if>
+      <if test="mrsj != null" >
+        mrsj,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="winums != null" >
+        winums,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="agent != null" >
+        #{agent,jdbcType=VARCHAR},
+      </if>
+      <if test="zname != null" >
+        #{zname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="xgname != null" >
+        #{xgname,jdbcType=VARCHAR},
+      </if>
+      <if test="codes != null" >
+        #{codes,jdbcType=VARCHAR},
+      </if>
+      <if test="bzj != null" >
+        #{bzj,jdbcType=VARCHAR},
+      </if>
+      <if test="zts != null" >
+        #{zts,jdbcType=SMALLINT},
+      </if>
+      <if test="mrsj != null" >
+        #{mrsj,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=VARCHAR},
+      </if>
+      <if test="winums != null" >
+        #{winums,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xc.pojo.ListsExample" resultType="java.lang.Integer" >
+    select count(*) from lists
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lists
+    <set >
+      <if test="record.listsId != null" >
+        lists_id = #{record.listsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.agent != null" >
+        agent = #{record.agent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zname != null" >
+        zname = #{record.zname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xgname != null" >
+        xgname = #{record.xgname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codes != null" >
+        codes = #{record.codes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bzj != null" >
+        bzj = #{record.bzj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zts != null" >
+        zts = #{record.zts,jdbcType=SMALLINT},
+      </if>
+      <if test="record.mrsj != null" >
+        mrsj = #{record.mrsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nums != null" >
+        nums = #{record.nums,jdbcType=VARCHAR},
+      </if>
+      <if test="record.winums != null" >
+        winums = #{record.winums,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lists
+    set lists_id = #{record.listsId,jdbcType=INTEGER},
+      agent = #{record.agent,jdbcType=VARCHAR},
+      zname = #{record.zname,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      xgname = #{record.xgname,jdbcType=VARCHAR},
+      codes = #{record.codes,jdbcType=VARCHAR},
+      bzj = #{record.bzj,jdbcType=VARCHAR},
+      zts = #{record.zts,jdbcType=SMALLINT},
+      mrsj = #{record.mrsj,jdbcType=VARCHAR},
+      nums = #{record.nums,jdbcType=VARCHAR},
+      winums = #{record.winums,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.Lists" >
+    update lists
+    <set >
+      <if test="agent != null" >
+        agent = #{agent,jdbcType=VARCHAR},
+      </if>
+      <if test="zname != null" >
+        zname = #{zname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="xgname != null" >
+        xgname = #{xgname,jdbcType=VARCHAR},
+      </if>
+      <if test="codes != null" >
+        codes = #{codes,jdbcType=VARCHAR},
+      </if>
+      <if test="bzj != null" >
+        bzj = #{bzj,jdbcType=VARCHAR},
+      </if>
+      <if test="zts != null" >
+        zts = #{zts,jdbcType=SMALLINT},
+      </if>
+      <if test="mrsj != null" >
+        mrsj = #{mrsj,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=VARCHAR},
+      </if>
+      <if test="winums != null" >
+        winums = #{winums,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where lists_id = #{listsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.Lists" >
+    update lists
+    set agent = #{agent,jdbcType=VARCHAR},
+      zname = #{zname,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      xgname = #{xgname,jdbcType=VARCHAR},
+      codes = #{codes,jdbcType=VARCHAR},
+      bzj = #{bzj,jdbcType=VARCHAR},
+      zts = #{zts,jdbcType=SMALLINT},
+      mrsj = #{mrsj,jdbcType=VARCHAR},
+      nums = #{nums,jdbcType=VARCHAR},
+      winums = #{winums,jdbcType=VARCHAR}
+    where lists_id = #{listsId,jdbcType=INTEGER}
+  </update>
+</mapper>
