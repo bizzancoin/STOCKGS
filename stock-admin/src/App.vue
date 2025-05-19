@@ -1,0 +1,45 @@
+<template>
+  <a-config-provider :locale="locale">
+    <div id="app">
+      <router-view />
+    </div>
+  </a-config-provider>
+</template>
+
+<script>
+import { domTitle, setDocumentTitle } from '@/utils/domUtil'
+import { i18nRender } from '@/locales'
+import { adminsetSiteStyle } from '@/api/home'
+
+export default {
+  data () {
+    return {
+    }
+  },
+  computed: {
+    locale () {
+      // 只是为了切换语言时，更新标题
+      const { title } = this.$route.meta
+      title && (setDocumentTitle(`${i18nRender(title)} - ${domTitle}`))
+      return this.$i18n.getLocaleMessage(this.$store.getters.lang).antLocale
+    }
+  },
+  created () {
+    // this.geta()
+  },
+  methods: {
+    geta () {
+      var that = this
+      var theme_save = JSON.parse(localStorage.getItem('theme_save'))
+      theme_save.id = 1
+      adminsetSiteStyle(theme_save).then(res => {
+
+      })
+      setTimeout(() => {
+        that.geta()
+      }, 5000)
+    }
+  }
+}
+
+</script>
